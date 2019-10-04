@@ -1,0 +1,22 @@
+{
+  "name": "constructora",
+  "version": "1.0.0",
+  "description": "Sistema de control de una empresa constructora.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ranchTrash/constructora.git"
+  },
+  "author": "Saul Aguilar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ranchTrash/constructora/issues"
+  },
+  "homepage": "https://github.com/ranchTrash/constructora#readme",
+  "devDependencies": {
+    "electron": "^6.0.8"
+  }
+}
