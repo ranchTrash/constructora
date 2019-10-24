@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- <meta charset="utf-8"> -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="script-src 'unsafe-inline';"> -->
+    <title>Login</title>
+    <link rel="stylesheet" href="styles/index_style/main.css">
+  </head>
+  <body>
+    <!-- <h1>Hello World</h1>
+    We are using node <script>document.write(process.versions.node)</script>,
+    Chrome <script>document.write(process.versions.chrome)</script>
+    and Electron <script>document.write(process.versions.electron)</script>
+
+    <br>
+    <input type="button" value="Connect to MySQL" id="btn">
+    <br>
+    <p id="result"></p>
+    <br>
+    <input type="button" value="Open Window 1" id="btn_w1">
+
+    <script src="database/connection.js" charset="utf-8"></script>
+    <script src="windows/window1/w1.js" charset="utf-8"></script> -->
+
+    <div class="login-window">
+        <form action="#" class="login-form">
+            <h1>Login</h1>
+      
+            <div class="txtb">
+              <input type="text">
+              <span data-placeholder="Username"></span>
+            </div>
+      
+            <div class="txtb">
+                <input type="password">
+                <span data-placeholder="Password"></span>
+            </div>
+      
+            <input type="submit" class="logbtn" value="Login">
+      
+            <div class="bottom-text">
+              Don't have an account? <a href="#">Sign up</a>
+            </div>
+        </form>
+    </div>
+
+    
+
+    <!-- SCRIPTS -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script>
+
+    <script type="text/javascript">
+      $(".txtb input").on("focus", function () {
+        $(this).addClass("focus");
+      });
+
+      $(".txtb input").on("blur", function () {
+        if ($(this).val() == "")
+          $(this).removeClass("focus"); 
+      });
+
+      $(".logbtn").click(function () {
+        $(".login-form").remove();
+
+        $(".login-window").append("<div class='lds-ring'><div></div><div></div><div></div><div></div></div>");
+        
+        // var p = document.createElement("p");
+        // var node = document.createTextNode("this is new");
+        // p.appendChild(node);
+
+        // var element = document.getElementById("test");
+        // element.appendChild(p);
+
+        // var divMain = document.createElement("div");
+        // divMain.className = "lds-ring";
+
+        // var div2 = document.createElement("div");
+        // var div3 = document.createElement("div");
+        // var div4 = document.createElement("div");
+        // var div5 = document.createElement("div");
+
+        // divMain.appendChild(div2);
+        // divMain.appendChild(div3);
+        // divMain.appendChild(div4);
+        // divMain.appendChild(div5);
+
+        // $(".login-window").appendChild(divMain);
+        // var element = document.getElementById("test");
+        // element.append(divMain);
+      });
+    </script>
+
+  </body>
+</html>
