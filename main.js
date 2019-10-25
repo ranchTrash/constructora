@@ -1,4 +1,5 @@
 const { app, BrowserWindow } = require('electron')
+const { remote } = require('electron')
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -10,7 +11,7 @@ function createWindow() {
     width: 800,
     height: 700,
     webPreferences: {
-      nodeIntegration: false
+      nodeIntegration: true
     }
   })
 
@@ -57,3 +58,14 @@ app.on('activate', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+// const button = document.getElementById("logbtn");
+
+// button.addEventListener('click', () => console.log("Hola"))
+
+function runExec() {
+  console.log("Hola");
+  win.loadFile('ventanas/inicio.html')
+}
+
+exports.runExec = runExec;

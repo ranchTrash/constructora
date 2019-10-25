@@ -36,7 +36,7 @@
                 <span data-placeholder="Password"></span>
             </div>
       
-            <input type="submit" class="logbtn" value="Login">
+            <input type="submit" class="logbtn" value="Login" id="logbtn">
       
             <div class="bottom-text">
               Don't have an account? <a href="#">Sign up</a>
@@ -49,6 +49,9 @@
     <!-- SCRIPTS -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script>
+    <!-- <script src="scripts/jQuery/jquery.min.js"></script> -->
+
+    <!-- REMOVER PANTALLA DE INICIO DE SESION -->
 
     <script type="text/javascript">
       $(".txtb input").on("focus", function () {
@@ -62,34 +65,21 @@
 
       $(".logbtn").click(function () {
         $(".login-form").remove();
-
         $(".login-window").append("<div class='lds-ring'><div></div><div></div><div></div><div></div></div>");
-        
-        // var p = document.createElement("p");
-        // var node = document.createTextNode("this is new");
-        // p.appendChild(node);
-
-        // var element = document.getElementById("test");
-        // element.appendChild(p);
-
-        // var divMain = document.createElement("div");
-        // divMain.className = "lds-ring";
-
-        // var div2 = document.createElement("div");
-        // var div3 = document.createElement("div");
-        // var div4 = document.createElement("div");
-        // var div5 = document.createElement("div");
-
-        // divMain.appendChild(div2);
-        // divMain.appendChild(div3);
-        // divMain.appendChild(div4);
-        // divMain.appendChild(div5);
-
-        // $(".login-window").appendChild(divMain);
-        // var element = document.getElementById("test");
-        // element.append(divMain);
       });
     </script>
+
+    <!-- CARGAR SISTEMA -->
+    <script>
+        var electron = require('electron')
+        var runExec = electron.remote.require('./main').runExec
+  
+        const button = document.getElementById('logbtn')
+  
+        button.addEventListener('click', function() {
+          runExec()
+        })
+      </script>
 
   </body>
 </html>
