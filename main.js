@@ -66,6 +66,9 @@ app.on('activate', () => {
 function runExec() {
   console.log("Hola");
   win.loadFile('ventanas/inicio.html')
+
+  // win.setFullscreen(true)
+  win.maximize()
 }
 
 exports.runExec = runExec;
