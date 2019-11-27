@@ -1,0 +1,151 @@
+.navbar > h2 {
+    position: fixed;
+    left: calc(0vw + 105px);
+    margin-right: calc(100vw - 16rem);
+    padding-right: 200px;
+    border-right: 1px solid black;
+ }
+
+ .navbar-brand {
+     padding-top: 16px;
+ }
+
+.barra-obras {
+    position: fixed;
+    top: 1%;
+    padding-right: 3vh;
+    padding-left: 1vh;
+    z-index: 0;
+    overflow-y: auto;
+    height: calc(100vh - 15px);
+    width: 20rem;
+    border-right: 1px solid #dee2e6;
+}
+
+.titulo {
+    position: sticky;
+}
+
+.titulo > h2 {
+    color: white;
+}
+
+/* .dropdown  {
+    font-size: 80px;
+} */
+
+.dropdown > button {
+    width: 100%;
+    font-size: 20px;
+}
+
+.dropdown-menu {
+    font-size: 20px;
+    width: 80%;
+}
+
+.titulo > input {
+    margin-top: 2rem;
+}
+
+.lista-obras {
+    margin-top: 2rem;
+    /* padding: 1rem 0; */
+    border-top: 1px solid #dee2e6;
+}
+
+.lista {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.item-lista {
+    padding: 0.75rem 0;
+    
+    align-content: center;
+}
+
+.boton-lista {
+    /* display: inline-block; */
+    /* position: flex; */
+    /* margin: 1rem; */
+
+    background-color: white;
+    border: none;
+    /* height: 6rem; */
+    width: 100%;
+    text-decoration: none;
+    /* border: 1px solid black; */
+    
+  /* border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px; */
+}
+
+.nombre-obra {
+    display: inline-block;
+    position: relative;
+    top: -4px;
+    left: -30px;
+    /* padding-right: 10rem; */
+    /* border: 1px solid black; */
+}
+
+.nombre-obra > p {
+    margin: 0;
+    text-align: left;
+    font-size: 20px;
+}
+
+.nombre-obra .fecha {
+    /* font-size: 15px; */
+    color: teal;
+}
+
+.boton-lista > .icono {
+    display: inline-block;
+    position: relative;
+    top: -5px;
+    left: -45px;
+    margin-top: 1rem;
+    /* margin-right: calc(0% + 5rem); */
+    /* border: 1px solid black; */
+
+}
+
+.boton-lista:hover {
+    background-color: rgb(158, 158, 209);
+    color: white;
+    border-radius: 5px;
+}
+
+.boton-lista-activo {
+    background-color: rgb(82, 82, 201);
+    color: white;
+    border-radius: 5px;
+}
+
+.boton-lista .feather {
+    width: 50px;
+    height: 50px;
+}
+
+/* 
+ * DASHBOARD
+ */
+
+.dashboard {
+    position: fixed;
+    padding-top: 7px;
+    top: 0;
+    left: calc(0vw + 28.1rem);
+    height: calc(100vh);
+    width: calc(100vw - 28.13rem);
+    /* border: 1px solid black; */
+    overflow-y: scroll;
+}

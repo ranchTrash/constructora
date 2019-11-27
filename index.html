@@ -24,22 +24,22 @@
 
     <div class="login-window">
         <form action="#" class="login-form">
-            <h1>Login</h1>
+            <h1>Iniciar sesión</h1>
       
             <div class="txtb">
               <input type="text">
-              <span data-placeholder="Username"></span>
+              <span data-placeholder="Nombre de usuario"></span>
             </div>
       
             <div class="txtb">
                 <input type="password">
-                <span data-placeholder="Password"></span>
+                <span data-placeholder="Contraseña"></span>
             </div>
       
-            <input type="submit" class="logbtn" value="Login" id="logbtn">
+            <input type="submit" class="logbtn" value="Iniciar" id="logbtn">
       
             <div class="bottom-text">
-              Don't have an account? <a href="#">Sign up</a>
+              ¿No tienes una cuenta? <a href="#">Regístrate</a>
             </div>
         </form>
     </div>
@@ -52,6 +52,11 @@
     <!-- <script src="scripts/jQuery/jquery.min.js"></script> -->
 
     <script>window.$ = window.jQuery = require('./scripts/jQuery/jquery.min.js')</script>
+
+    <!-- CARGAR BASE DE DATOS -->
+
+
+    <!-- <script src="scripts/database/connection.js"></script> -->
 
     <!-- REMOVER PANTALLA DE INICIO DE SESION -->
 
@@ -66,6 +71,8 @@
       });
 
       $(".logbtn").click(function () {
+        console.log("aaaaaaaaaaaaaaaaaaaa");
+        
         $(".login-form").remove();
         $(".login-window").append("<div class='lds-ring'><div></div><div></div><div></div><div></div></div>");
       });
@@ -80,8 +87,10 @@
   
         button.addEventListener('click', function() {
           runExec()
+          console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+          
         })
-      </script>
+    </script>
 
   </body>
 </html>

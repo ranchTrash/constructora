@@ -63,8 +63,7 @@ app.on('activate', () => {
 
 // button.addEventListener('click', () => console.log("Hola"))
 
-function runExec() {
-  console.log("Hola");
+function runExec() {  
   win.loadFile('ventanas/inicio.html')
 
   // win.setFullscreen(true)

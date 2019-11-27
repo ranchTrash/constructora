@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="../styles/global_style.css">
+    <link rel="stylesheet" href="../styles/obras_style/obras.css">
+
+    <title>Inicio</title>
+  </head>
+
+  <body>
+
+    <nav class="navbar fixed-top flex-md-nowrap p-0">
+
+        <!-- <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">C</a> -->
+        <a class="navbar-brand mr-0" href="#" id="btnConectar">
+            <span data-feather="slack"></span>
+        </a>
+        <!-- <h1 class="h2 border-bottom pb-2 pt-2">Inicio</h1> -->
+        <!-- <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"> -->
+
+
+        <!-- <h2 class="pb-2 pt-2">Obras</h2> -->
+
+        <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+            <!-- <a class="nav-link" href="#">Salir</a> -->
+                <a class="nav-link" href="#">Registrar obra</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="container-fluid">
+
+        <div class="row">
+
+            <!-- <nav class="col-md-2 d-none d-md-block bg-light sidebar"> -->
+            <nav class="bg-light sidebar">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="inicio.html">
+                                <span data-feather="home"></span>
+                                <!-- Inicio <span class="sr-only">(current)</span> -->
+                                <p class="titulos">Inicio</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="obras.html">
+                                <span data-feather="file"></span>
+                                <!-- Proyectos -->
+                                <p class="titulos">Proyectos</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span data-feather="shopping-cart"></span>
+                                <!-- Materiales -->
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="empleados.html">
+                                <span data-feather="users"></span>
+                                <!-- Empleados -->
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span data-feather="bar-chart-2"></span>
+                                <!-- Reportes -->
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span data-feather="layers"></span>
+                                <!-- Integrations -->
+                            </a>
+                        </li>
+                    </ul>
+
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                        <!-- <span>Saved reports</span> -->
+                        <!-- <a class="d-flex align-items-center text-muted" href="#">
+                            <span data-feather="plus-circle"></span>
+                        </a> -->
+                    </h6>
+
+                    <ul class="nav flex-column mb-2">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span data-feather="file-text"></span>
+                                <!-- Current month -->
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span data-feather="file-text"></span>
+                                <!-- Last quarter -->
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span data-feather="file-text"></span>
+                                <!-- Social engagement -->
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span data-feather="file-text"></span>
+                                <!-- Year-end sale -->
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4"> -->
+            <main role="main">
+
+                <div class="barra-obras">
+                    <div class="titulo">
+                        <h2>Obras</h2>
+                        <input class="form-control" type="number" placeholder="Buscar" aria-label="Search">
+                    </div>
+
+                    <div class="lista-obras">
+                        <ul class="lista" id="lista">                      
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="dashboard">
+                    <!-- <h2>Wea</h2>
+                    <br>
+                    <p>Blabla</p> -->
+
+                </div>
+
+                    <!-- <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3"> -->
+                <!-- <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"> -->
+                    <!-- <h1 class="h2">Inicio</h1> -->
+                    <!-- <div class="btn-toolbar mb-2 mb-md-0">
+                    <div class="btn-group mr-2">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+                    </div>
+                    <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+                        <span data-feather="calendar"></span>
+                        This week
+                    </button>
+                    </div> -->
+                <!-- </div> -->
+
+            </main>
+        
+        </div>
+    </div>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+    <script>window.$ = window.jQuery = require('../scripts/jQuery/jquery.min.js')</script>
+    <script src="../bootstrap/libraries/jquery-3.3.1.slim.min.js"></script>
+    <script src="../bootstrap/libraries/popper.min.js"></script>
+    <script src="../bootstrap/libraries/bootstrap.min.js"></script>
+
+    <script src="../bootstrap/libraries/feather-icons/4.21.1/feather.min.js"></script>
+    <!-- <script src="../bootstrap/libraries/Chart.min.js"></script> -->
+
+    <script src="../scripts/mainScript.js"></script>
+    <script src="../scripts/database/connection.js"></script>
+    <script src="../scripts/obras.js"></script>
+
+  </body>
+</html>
