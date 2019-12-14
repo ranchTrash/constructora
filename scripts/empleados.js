@@ -10,6 +10,16 @@ connection.query($query, function (err, rows, fields) {
 
 */
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function formatearFecha(fecha) {
+    var partesFecha = String(fecha).split(" ")
+    var jsFecha = partesFecha[2] + " " + partesFecha[1] + " " + partesFecha[3]
+    return jsFecha 
+}
+
 var filtroSeleccionado = ''
 
 $(document).ready(function () {
@@ -38,12 +48,179 @@ $('.form-control').on('keyup', function () {
     } else {
         getFiltroPersona(busqueda)
     }
-
 })
+
+$(document).on("click", '.boton-lista', function () {
+    $(".boton-lista-activo").removeClass("boton-lista-activo")
+    $(this).addClass("boton-lista-activo")
+
+    var curpEmp = $(this).find('.nombre-obra').find('p').first().text()
+    console.log(curpEmp);
+
+    if (filtroSeleccionado.localeCompare('empleados') === 0) {
+        seleccionaEmpleado(curpEmp)
+    } else {
+        seleccionaPersona(curpEmp)
+    }
+})
+
+function seleccionaEmpleado(curpEmp) {
+    $query = "select * from persona p join contratotra ct on p.cve_per=ct.cve_per where curp_per=" + curpEmp
+
+    connection.query($query, function (err, rows, fields) {
+        if (err) {
+            console.log("ERROR")
+            return console.log(err.stack)
+        }
+
+        var html = ''
+
+        html += "<h2>"
+            html += "Empleado " + rows[0].cve_per
+        html += "</h2>"
+
+        html += "<div class='row mt-3'>"
+            html += "<h6 class='mb-1 col-md-2'>"
+                html += "<span class='text-muted'>"
+                    html += "Nombre: "
+                html += "</span>"
+
+                html += "<span id='nombreEmp'>"
+                    // html += "undef"
+                    html += rows[0].nom_per + " " + rows[0].ap_per + " " + rows[0].am_per
+                html += "</span>"
+            html += "</h6>"
+
+            html += "<h6 class='mb-1 col-md-2'>"
+                html += "<span class='text-muted'>"
+                    html += "Puesto: "
+                html += "</span>"
+
+                html += "<span id='puestoEmp'>"
+                    html += rows[0].puesto_contra
+                html += "</span>"
+            html += "</h6>"
+
+            html += "<h6 class='mb-1 mr-4 width-50'>"
+                html += "<span class='text-muted'>"
+                    html += "Fecha de inicio: "
+                html += "</span>"
+
+                html += "<span id='fechaInicioEmp'>"
+                    var fecha = String(rows[0].fi_contra).split(" ")
+                    html += fecha[2] + "/" + fecha[1] + "/" + fecha[3]
+                html += "</span>"
+            html += "</h6>"
+
+            html += "<h6 class='mb-1 col-md-3'>"
+                html += "<span class='text-muted'>"
+                    html += "Fecha de fin: "
+                html += "</span>"
+
+                html += "<span id='fechaFinEmp'>"
+                    var fecha = String(rows[0].ff_contra).split(" ")
+                    html += fecha[2] + "/" + fecha[1] + "/" + fecha[3]
+                html += "</span>"
+            html += "</h6>"
+
+            html += "<a class='p-0 col-md-1 nav-link' href='#' id='detalles'>"
+                html += "Más detalles"
+            html += "</a>"
+
+        html += "</div>"
+
+        html += "<hr class='mb-4 mr-2'>"
+
+        $('.dashboard').empty()
+        $('.dashboard').append(html)
+
+        setInformacion(curpEmp)
+    })
+}
+
+function seleccionaPersona(curpEmp) {
+    $query = "select * from persona p join contratotra ct on p.cve_per=ct.cve_per where curp_per=" + curpEmp
+
+    connection.query($query, function (err, rows, fields) {
+        if (err) {
+            console.log("ERROR")
+            return console.log(err.stack)
+        }
+
+        var html = ''
+
+        html += "<h2>"
+            html += "Empleado " + rows[0].cve_per
+        html += "</h2>"
+
+        html += "<div class='row mt-3'>"
+            html += "<h6 class='mb-1 col-md-6'>"
+                html += "<span class='text-muted'>"
+                    html += "Nombre: "
+                html += "</span>"
+
+                html += "<span id='nombreEmp'>"
+                    // html += "undef"
+                    html += rows[0].nom_per + " " + rows[0].ap_per + " " + rows[0].am_per
+                html += "</span>"
+            html += "</h6>"
+
+            html += "<h6 class='mb-1 col-md-4'>"
+                html += "<span class='text-muted'>"
+                    html += "Puesto: "
+                html += "</span>"
+
+                html += "<span id='puestoEmp'>"
+                    // html += rows[0].puesto_contra
+                    html += "Sin obra asignada"
+                html += "</span>"
+            html += "</h6>"
+
+            // html += "<h6 class='mb-1 mr-4 width-50'>"
+            //     html += "<span class='text-muted'>"
+            //         html += "Fecha de inicio: "
+            //     html += "</span>"
+
+            //     html += "<span id='fechaInicioEmp'>"
+            //         var fecha = String(rows[0].fi_contra).split(" ")
+            //         html += fecha[2] + "/" + fecha[1] + "/" + fecha[3]
+            //     html += "</span>"
+            // html += "</h6>"
+
+            // html += "<h6 class='mb-1 col-md-3'>"
+            //     html += "<span class='text-muted'>"
+            //         html += "Fecha de fin: "
+            //     html += "</span>"
+
+            //     html += "<span id='fechaFinEmp'>"
+            //         var fecha = String(rows[0].ff_contra).split(" ")
+            //         html += fecha[2] + "/" + fecha[1] + "/" + fecha[3]
+            //     html += "</span>"
+            // html += "</h6>"
+
+            html += "<a class='p-0 col-md-1 nav-link' href='#' id='detalles'>"
+                html += "Más detalles"
+            html += "</a>"
+
+        html += "</div>"
+
+        html += "<hr class='mb-4 mr-2'>"
+
+        $('.dashboard').empty()
+        $('.dashboard').append(html)
+
+        // setCliente(claveObra)
+        // setActividades(claveObra)
+        // setTrabajadores(claveObra)
+        // setMateriales(claveObra)
+        // setPermisos(claveObra)
+    })
+}
 
 function getListaEmpleados() {
 
-    $query = "select concat(nom_per, ' ') as nombre, concat(ap_per, ' ', am_per) as apellido from persona p join contratotra ct on p.cve_per=ct.cve_per"
+    // $query = "select concat(nom_per, ' ') as nombre, concat(ap_per, ' ', am_per) as apellido from persona p join contratotra ct on p.cve_per=ct.cve_per"
+    $query = "select * from persona p join contratotra ct on p.cve_per=ct.cve_per where curdate() between fi_contra and ff_contra"
 
     connection.query($query, function (err, rows, fields) {
         if (err) {
@@ -62,10 +239,12 @@ function getListaEmpleados() {
 
                     html += "<div class='nombre-obra'>"
                         html += "<p>"
-                            html += row.nombre
+                            // html += row.nombre
+                            html += row.curp_per
                         html += "</p>"
                         html += "<p class='fecha'>"
-                            html += row.apellido  
+                            // html += row.apellido  
+                            html += row.puesto_contra
                         html += "</p>"
                     html += "</div>"
                 html += "</button>"
@@ -80,8 +259,8 @@ function getListaEmpleados() {
 }
 
 function getListaPersonas() {
-
-    $query = "select concat(nom_per, ' ') as nombre, concat(ap_per, ' ', am_per) as apellido from persona"
+    // $query = "select concat(nom_per, ' ') as nombre, concat(ap_per, ' ', am_per) as apellido from persona"
+    $query = "select * from persona p join contratotra ct on p.cve_per=ct.cve_per where curdate() not between fi_contra and ff_contra"
 
     connection.query($query, function (err, rows, fields) {
         if (err) {
@@ -100,10 +279,12 @@ function getListaPersonas() {
 
                     html += "<div class='nombre-obra'>"
                         html += "<p>"
-                            html += row.nombre
+                            // html += row.nombre
+                            html += row.curp_per
                         html += "</p>"
                         html += "<p class='fecha'>"
-                            html += row.apellido  
+                            // html += row.apellido  
+                            html += row.puesto_contra
                         html += "</p>"
                     html += "</div>"
                 html += "</button>"
@@ -118,7 +299,8 @@ function getListaPersonas() {
 }
 
 function getFiltroEmpleado(empleado) {
-    $query = "select nom_per, ap_per, am_per from persona p join contratotra ct on p.cve_per=ct.cve_per where nom_per like '%" + empleado + "%' or ap_per like '%" + empleado + "%' or am_per like '%" + empleado + "%'" 
+    // $query = "select nom_per, ap_per, am_per from persona p join contratotra ct on p.cve_per=ct.cve_per where nom_per like '%" + empleado + "%' or ap_per like '%" + empleado + "%' or am_per like '%" + empleado + "%'" 
+    $query = "select * from persona p join contratotra ct on p.cve_per=ct.cve_per where nom_per like '%" + empleado + "%' or ap_per like '%" + empleado + "%' or am_per like '%" + empleado + "%' or curp_per like '%" + empleado + "%' or puesto_contra like '%" + empleado + "%' and curdate() between fi_contra and ff_contra" 
 
     connection.query($query, function (err, rows, fields) {
         if (err) {
@@ -137,10 +319,12 @@ function getFiltroEmpleado(empleado) {
 
                     html += "<div class='nombre-obra'>"
                         html += "<p>"
-                            html += row.nom_per
+                            // html += row.nom_per
+                            html += row.curp_per
                         html += "</p>"
                         html += "<p class='fecha'>"
-                            html += row.ap_per + " " + row.am_per 
+                            // html += row.ap_per + " " + row.am_per 
+                            html += row.puesto_contra
                         html += "</p>"
                     html += "</div>"
                 html += "</button>"
@@ -187,6 +371,118 @@ function getFiltroPersona(persona) {
         $('.lista').empty()
         $(".lista").append(html)
 
+        feather.replace()
+    })
+}
+
+// SETTERS
+
+function setInformacion(curpEmp) {
+    // $query = "select * from persona p join contratotra ct on p.cve_per=ct.cve_per where curp_per=" + curpEmp
+    $query = "select * from ciudad c join codigo cod on c.cve_ciu=cod.cve_ciu join colonia col on cod.cp_cod=col.cp_cod join persona p on col.cve_col=p.cve_col join contratotra ct on p.cve_per=ct.cve_per where curp_per=" + curpEmp
+
+    connection.query($query, function (err, rows, fields) {
+        if (err) {
+            console.log("ERROR")
+            return console.log(err.stack)
+        } 
+
+        var html = ''
+
+        html += "<div class='container'>"
+            html += "<div class='row'>"
+
+                html += "<div class='col-md-3 border-right'>"
+                    html += "<span class='ml-5' data-feather='user' style='width:100px;height:100px;'></span>"
+                html += "</div>"
+
+                html += "<div class='col-md-9 pl-5'>"
+                    html += "<div class='row'>"
+                        html += "<h5>Nombre:&nbsp;</h5>"
+                        var nombre = rows[0].nom_per + " " + rows[0].ap_per + " " + rows[0].am_per
+                        html += "<h5 class='text-muted'>" + nombre + "</h5>"
+                    html += "</div>"
+
+                    html += "<div class='row'>"
+                        html += "<h5>CURP:&nbsp;</h5>"
+                        html += "<h5 class='text-muted'>" + rows[0].curp_per + "</h5>"
+                    html += "</div>"
+
+                    html += "<div class='row'>"
+                        html += "<h5>Sexo:&nbsp;</h5>"
+                        html += "<h5 class='text-muted'>" + rows[0].genero_per + "</h5>"
+                    html += "</div>"
+
+                    html += "<div class='row'>"
+                        html += "<h5>Fecha de nacimiento:&nbsp;</h5>"
+                        console.log(rows[0].fnac_per);
+                        
+                        var dia = String(rows[0].fnac_per).split(" ")[2]
+                        var mes = String(rows[0].fnac_per).split(" ")[1]
+                        var anio = String(rows[0].fnac_per).split(" ")[3]
+                        var fechaNac = dia + "/" + mes + "/" + anio
+                        html += "<h5 class='text-muted'>" + fechaNac + "</h5>"
+                    html += "</div>"
+
+                    html += "<div class='row'>"
+                        html += "<h5>Estado civil:&nbsp;</h5>"
+                        html += "<h5 class='text-muted'>" + rows[0].edocivil_per + "</h5>"
+                    html += "</div>"
+
+                    html += "<div class='row'>"
+                        html += "<h5>Correo electrónico:&nbsp;</h5>"
+                        html += "<h5 class='text-muted'>" + rows[0].mail_per + "</h5>"
+                    html += "</div>"
+
+                    html += "<div class='row'>"
+                        html += "<h5>Teléfono:&nbsp;</h5>"
+                        html += "<h5 class='text-muted'>" + rows[0].tel_per + "</h5>"
+                    html += "</div>"
+
+                    html += "<div class='row pb-3'>"
+                        html += "<h5>Dirección:&nbsp;</h5>"
+                        var calle = rows[0].calle_per
+                        var num = rows[0].num_per
+                        var orient = rows[0].orient_per
+                        var colonia = rows[0].nom_col
+                        var ciudad = rows[0].nom_ciu
+                        var cod = rows[0].codpos_cod
+                        var direccion = calle + " " + num + " " + orient + " " + colonia + " " + ciudad + " " + cod
+                        html += "<h5 class='text-muted'>" + direccion + "</h5>"
+                    html += "</div>"
+
+                    html += "<div class='row pt-4 border-top'>"
+                        html += "<h5>Puesto:&nbsp;</h5>"
+                        html += "<h5 class='text-muted'>" + rows[0].puesto_contra + "</h5>"
+                    html += "</div>"
+
+                    html += "<div class='row'>"
+                        html += "<h5>Sueldo:&nbsp;</h5>"
+                        html += "<h5 class='text-muted'>$" + rows[0].sueldo_contra + "</h5>"
+                    html += "</div>"
+
+                    html += "<div class='row'>"
+                        html += "<h5>NSS:&nbsp;</h5>"
+                        html += "<h5 class='text-muted'>" + rows[0].nss_contra + "</h5>"
+                    html += "</div>"
+
+                    html += "<div class='row'>"
+                        html += "<h5>Inició contrato:&nbsp;</h5>"
+                        html += "<h5 class='text-muted'>" + formatearFecha(rows[0].fi_contra) + "</h5>"
+                    html += "</div>"
+
+                    html += "<div class='row'>"
+                        html += "<h5>Contrato termina:&nbsp;</h5>"
+                        html += "<h5 class='text-muted'>" + formatearFecha(rows[0].ff_contra) + "</h5>"
+                    html += "</div>"
+
+                html += "</div>"
+
+            html += "</div>"
+
+        html += "</div>"
+
+        $(".dashboard").append(html)
         feather.replace()
     })
 }

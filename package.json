@@ -17,6 +17,10 @@
   },
   "homepage": "https://github.com/ranchTrash/constructora#readme",
   "devDependencies": {
-    "electron": "^6.0.8"
+    "electron": "^6.0.8",
+    "less": "^3.10.3"
+  },
+  "dependencies": {
+    "mysql": "^2.17.1"
   }
 }

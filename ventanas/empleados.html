@@ -32,8 +32,11 @@
 
         <ul class="navbar-nav px-3">
             <li class="nav-item text-nowrap">
-            <!-- <a class="nav-link" href="#">Salir</a> -->
-                <a class="nav-link" href="#">Registrar obra</a>
+                <div class="btn-group" role="group" aria-label="Ejemplo">
+                    <button class="btn btn-secondary btn-sm">
+                        <a class="nav-link text-reset" href="#" id="registro">Registrar empleado</a>
+                    </button>
+                </div>
             </li>
         </ul>
     </nav>
@@ -61,7 +64,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="materiales.html">
                                 <span data-feather="shopping-cart"></span>
                                 <!-- Materiales -->
                             </a>
@@ -211,6 +214,19 @@
     <script src="../scripts/database/connection.js"></script>
     <!-- <script src="../scripts/obras.js"></script> -->
     <script src="../scripts/empleados.js"></script>
+
+    <script>
+        var electron = require('electron')
+        var runExec = electron.remote.require('./main').openRegistroPersona
+    
+        const button = document.getElementById('registro')
+    
+        button.addEventListener('click', function() {
+            runExec()
+            console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+            
+        })
+    </script>
 
   </body>
 </html> 

@@ -70,4 +70,48 @@ function runExec() {
   win.maximize()
 }
 
+// function hola() {
+//   console.log("hola soy la funcion hola");
+// }
+
+var winRP
+
+function openRegistroPersona () {
+  winRP = new BrowserWindow({
+    width: 800,
+    height: 700,
+    autoHideMenuBar: true,
+    webPreferences: {
+      nodeIntegration: true
+    }
+  })
+
+  winRP.loadFile('ventanas/registroPersonas.html')
+
+  win.on('closed', () => {
+    win = null
+  })
+}
+
+function openRegistroMaterial() {
+  winRP = new BrowserWindow({
+    width: 800,
+    height: 700,
+    autoHideMenuBar: true,
+    webPreferences: {
+      nodeIntegration: true
+    }
+  })
+
+  winRP.loadFile('ventanas/registroMateriales.html')
+
+  win.on('closed', () => {
+    win = null
+  })
+}
+
+
 exports.runExec = runExec;
+exports.openRegistroPersona = openRegistroPersona;
+exports.openRegistroMaterial = openRegistroMaterial;
+// exports.openRegistroPersona = openRegistroPersona;
