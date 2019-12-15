@@ -4,6 +4,7 @@ const { remote } = require('electron')
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win
+var connection
 
 function createWindow() {
   // create the browser window
@@ -31,6 +32,11 @@ function createWindow() {
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
     win = null
+
+    connection.end(function(){
+      // The connection has been closed
+      console.log("conexion cerrada con exito");
+    })
   })
 }
 
@@ -95,7 +101,7 @@ function openRegistroPersona () {
 
 function openRegistroMaterial() {
   winRP = new BrowserWindow({
-    width: 800,
+    width: 900,
     height: 700,
     autoHideMenuBar: true,
     webPreferences: {
@@ -110,8 +116,51 @@ function openRegistroMaterial() {
   })
 }
 
+function openRegistroObra() {
+  winRP = new BrowserWindow({
+    width: 1200,
+    height: 700,
+    autoHideMenuBar: true,
+    webPreferences: {
+      nodeIntegration: true
+    }
+  })
+
+  winRP.loadFile('ventanas/registroObras.html')
+
+  win.on('closed', () => {
+    win = null
+  })
+}
+
+////////////////////////////////////////////
+
+var mysql = require("mysql");
+
+connection = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "s19a12a1999",
+  database: "constructora"
+});
+
+connection.connect((err) => {
+  if (err) {
+    console.log("Error, ver la consola para mas detalles.");
+    return console.log(err.stack);
+  } else {
+    console.log("Conectado");
+  }
+
+  console.log("Conexion establecida satisfactoriamente.");
+});
+
+////////////////////////////////////////////
 
 exports.runExec = runExec;
 exports.openRegistroPersona = openRegistroPersona;
 exports.openRegistroMaterial = openRegistroMaterial;
+exports.openRegistroObra = openRegistroObra;
+
+exports.connection = connection;
 // exports.openRegistroPersona = openRegistroPersona;

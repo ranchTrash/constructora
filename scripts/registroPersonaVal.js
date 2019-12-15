@@ -1,19 +1,27 @@
+var electron = require('electron')
+var connection = electron.remote.require('./main').connection
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 // Example starter JavaScript for disabling form submissions if there are invalid fields
-(function () {
+(async function () {
     'use strict'
 
-    window.addEventListener('load', function () {  
+    window.addEventListener('load', async function () {  
       // Fetch all the forms we want to apply custom Bootstrap validation styles to
       var forms = document.getElementsByClassName('needs-validation')
   
       // Loop over them and prevent submission
-      Array.prototype.filter.call(forms, function (form) {
-        form.addEventListener('submit', function (event) {         
+      Array.prototype.filter.call(forms, async function (form) {
+        form.addEventListener('submit', async function (event) {         
           if (form.checkValidity() === false) {
             event.preventDefault()
             event.stopPropagation()
           } else {
-            // getDatos()
+            getDatos()
+            await sleep(2000)
           }
           form.classList.add('was-validated')
         }, false)
@@ -41,13 +49,14 @@
     var ap = String(apellido).split(" ")[0]
     var am = String(apellido).split(" ")[1]
 
-    console.log(nom + ap + am + genero + edocivil + mail + fnac + calle + num + orient + entrecalles + tel + col + curp);
-    
+    console.log(nom + " " + ap + " " + am + " " + genero + " " + edocivil + mail + fnac + calle + num + orient + entrecalles + tel + col + curp); 
 
     agregarPersona(nom, ap, am, genero, edocivil, mail, fnac, calle, num, orient, entrecalles, tel, col, curp)
     
   }
 
+
+  //arrglar orden de entrada de nombre
   function agregarPersona(ap, am, nom, genero, edocivil, mail, fnac, calle, num, orient, entrecalles, tel, col, curp) {
     // $query = "start transaction"
 
@@ -62,9 +71,10 @@
 
     
     connection.beginTransaction(function (err) {
-      if (err) {
-        console.log("ERROR");
-        return err.stack
+      if (err) { 
+        connection.rollback(function() {
+          throw err;
+        });
       }
 
       $query = "call sp_agregaPersona(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
@@ -72,8 +82,12 @@
       var v = [ap, am, nom, genero, edocivil, mail, fnac, calle, num, orient, entrecalles, tel, col, curp]
 
       connection.query($query, v, function (err, rows, fields) {
-          if (err) { return console.log(err.stack) }
-          console.log(rows);
+        if (err) { 
+          connection.rollback(function() {
+            throw err;
+          });
+        }
+          console.log("persona agregada con exito");
       })
 
     })    
@@ -81,6 +95,6 @@
   }
 
 $("#btnTest").on('click', function () {
-  getDatos()
+  // getDatos()
   
 })

@@ -65,7 +65,7 @@ $(document).on("click", '.boton-lista', function () {
 })
 
 function seleccionaEmpleado(curpEmp) {
-    $query = "select * from persona p join contratotra ct on p.cve_per=ct.cve_per where curp_per=" + curpEmp
+    $query = "select * from persona p join contratotra ct on p.cve_per=ct.cve_per where curp_per='" + curpEmp + "'"
 
     connection.query($query, function (err, rows, fields) {
         if (err) {
@@ -135,6 +135,8 @@ function seleccionaEmpleado(curpEmp) {
         $('.dashboard').append(html)
 
         setInformacion(curpEmp)
+        setObras(curpEmp)
+        setActividades(curpEmp)
     })
 }
 
@@ -338,6 +340,7 @@ function getFiltroEmpleado(empleado) {
     })
 }
 
+// arreglar
 function getFiltroPersona(persona) {
     $query = "select nom_per, ap_per, am_per from persona where nom_per like '%" + persona + "%' or ap_per like '%" + persona + "%' or am_per like '%" + persona + "%'" 
 
@@ -379,7 +382,7 @@ function getFiltroPersona(persona) {
 
 function setInformacion(curpEmp) {
     // $query = "select * from persona p join contratotra ct on p.cve_per=ct.cve_per where curp_per=" + curpEmp
-    $query = "select * from ciudad c join codigo cod on c.cve_ciu=cod.cve_ciu join colonia col on cod.cp_cod=col.cp_cod join persona p on col.cve_col=p.cve_col join contratotra ct on p.cve_per=ct.cve_per where curp_per=" + curpEmp
+    $query = "select * from ciudad c join codigo cod on c.cve_ciu=cod.cve_ciu join colonia col on cod.cp_cod=col.cp_cod join persona p on col.cve_col=p.cve_col join contratotra ct on p.cve_per=ct.cve_per where curp_per='" + curpEmp + "'"
 
     connection.query($query, function (err, rows, fields) {
         if (err) {
@@ -415,8 +418,6 @@ function setInformacion(curpEmp) {
 
                     html += "<div class='row'>"
                         html += "<h5>Fecha de nacimiento:&nbsp;</h5>"
-                        console.log(rows[0].fnac_per);
-                        
                         var dia = String(rows[0].fnac_per).split(" ")[2]
                         var mes = String(rows[0].fnac_per).split(" ")[1]
                         var anio = String(rows[0].fnac_per).split(" ")[3]
@@ -439,7 +440,7 @@ function setInformacion(curpEmp) {
                         html += "<h5 class='text-muted'>" + rows[0].tel_per + "</h5>"
                     html += "</div>"
 
-                    html += "<div class='row pb-3'>"
+                    html += "<div class='row'>"
                         html += "<h5>Dirección:&nbsp;</h5>"
                         var calle = rows[0].calle_per
                         var num = rows[0].num_per
@@ -451,30 +452,32 @@ function setInformacion(curpEmp) {
                         html += "<h5 class='text-muted'>" + direccion + "</h5>"
                     html += "</div>"
 
-                    html += "<div class='row pt-4 border-top'>"
-                        html += "<h5>Puesto:&nbsp;</h5>"
-                        html += "<h5 class='text-muted'>" + rows[0].puesto_contra + "</h5>"
-                    html += "</div>"
+                    // Info de contrato
 
-                    html += "<div class='row'>"
-                        html += "<h5>Sueldo:&nbsp;</h5>"
-                        html += "<h5 class='text-muted'>$" + rows[0].sueldo_contra + "</h5>"
-                    html += "</div>"
+                    // html += "<div class='row pt-4 border-top'>"
+                    //     html += "<h5>Puesto:&nbsp;</h5>"
+                    //     html += "<h5 class='text-muted'>" + rows[0].puesto_contra + "</h5>"
+                    // html += "</div>"
 
-                    html += "<div class='row'>"
-                        html += "<h5>NSS:&nbsp;</h5>"
-                        html += "<h5 class='text-muted'>" + rows[0].nss_contra + "</h5>"
-                    html += "</div>"
+                    // html += "<div class='row'>"
+                    //     html += "<h5>Sueldo:&nbsp;</h5>"
+                    //     html += "<h5 class='text-muted'>$" + rows[0].sueldo_contra + "</h5>"
+                    // html += "</div>"
 
-                    html += "<div class='row'>"
-                        html += "<h5>Inició contrato:&nbsp;</h5>"
-                        html += "<h5 class='text-muted'>" + formatearFecha(rows[0].fi_contra) + "</h5>"
-                    html += "</div>"
+                    // html += "<div class='row'>"
+                    //     html += "<h5>NSS:&nbsp;</h5>"
+                    //     html += "<h5 class='text-muted'>" + rows[0].nss_contra + "</h5>"
+                    // html += "</div>"
 
-                    html += "<div class='row'>"
-                        html += "<h5>Contrato termina:&nbsp;</h5>"
-                        html += "<h5 class='text-muted'>" + formatearFecha(rows[0].ff_contra) + "</h5>"
-                    html += "</div>"
+                    // html += "<div class='row'>"
+                    //     html += "<h5>Inició contrato:&nbsp;</h5>"
+                    //     html += "<h5 class='text-muted'>" + formatearFecha(rows[0].fi_contra) + "</h5>"
+                    // html += "</div>"
+
+                    // html += "<div class='row'>"
+                    //     html += "<h5>Contrato termina:&nbsp;</h5>"
+                    //     html += "<h5 class='text-muted'>" + formatearFecha(rows[0].ff_contra) + "</h5>"
+                    // html += "</div>"
 
                 html += "</div>"
 
@@ -482,7 +485,137 @@ function setInformacion(curpEmp) {
 
         html += "</div>"
 
+        html += "<hr>"
+
         $(".dashboard").append(html)
         feather.replace()
+    })
+}
+
+function setObras(curpEmp) {
+    $query = "select cve_con, fi_contra, ff_contra, puesto_contra, sueldo_contra, nss_contra from persona p join contratotra ct on p.cve_per=ct.cve_per join avance a on ct.cve_contra=a.cve_contra join trabajadoract ta on a.num_traact=ta.num_traact join actrealizar ar on ta.num_actrea=ar.num_actrea join actividad act on ar.cve_act=act.cve_act where curp_per='" + curpEmp + "' group by cve_con"
+   
+    connection.query($query, function (err, rows, fields) {
+        if (err) {
+            console.log("ERROR")
+            return console.log(err.stack)
+        }
+
+        if (rows[0].nombre === null) {
+            return
+        }
+
+        var html = ''
+
+        html += "<div class='row mb-2'>"
+            html += "<h4 class='col-md-5'>Obras asignadas</h4>"
+
+            html += "<label class='col-md-4'></label>"
+
+            html += "<div class='btn-group col-md-3' role='group' aria-label='Basic example'>"
+                html += "<button type='button' class='btn btn-info'>Ir a Obras</button>"
+            html += "</div>"
+
+        html += "</div>"
+
+        html += "<table class='table' id='tabla'>"
+            html += "<thead class='thead-light'>"
+                html += "<tr>"
+                    html += "<th scope='col'>Obra</th>"
+                    html += "<th scope='col'>Puesto</th>"
+                    html += "<th scope='col'>Sueldo($)</th>"
+                    html += "<th scope='col'>NSS</th>"
+                    html += "<th scope='col'>Inicio</th>"
+                    html += "<th scope='col'>Fin</th>"
+                html += "</tr>"
+            html += "</thead>"
+
+            html += "<tbody>"
+
+        rows.forEach(row => {
+            html += "<tr class='text-justify'>"
+                html += "<th scope='row'>" + row.cve_con + "</th>"
+                html += "<td>" + row.puesto_contra + "</td>"
+                html += "<td>" + row.sueldo_contra + "</td>"
+                html += "<td>" + row.nss_contra + "</td>"
+                html += "<td>" + formatearFecha(row.fi_contra) + "</td>"
+                html += "<td>" + formatearFecha(row.ff_contra) + "</td>"
+
+            html += "</tr>"
+        });
+
+            html += "</tbody>"
+        html += "</table>"
+
+        html += "<hr class='mb-3'>"
+
+        $(".dashboard").append(html)
+    })
+}
+
+function setActividades(curpEmp) {
+    // $query = "select concat(nom_per, ' ', ap_per, ' ', am_per) as nombre, nom_act, sum(cant_ava) as avance, cant_traact, umedida_ava from persona p join contratotra ct on p.cve_per=ct.cve_per join avance a on ct.cve_contra=a.cve_contra join trabajadoract ta on a.num_traact=ta.num_traact join actrealizar ar on ta.num_actrea=ar.num_actrea join actividad act on ar.cve_act=act.cve_act where cve_con=" + claveObra + " group by a.cve_contra"
+    $query = "select cve_con, concat(nom_per, ' ', ap_per, ' ', am_per) as nombre, nom_act, sum(cant_ava) as avance, cant_traact, umedida_ava from persona p join contratotra ct on p.cve_per=ct.cve_per join avance a on ct.cve_contra=a.cve_contra join trabajadoract ta on a.num_traact=ta.num_traact join actrealizar ar on ta.num_actrea=ar.num_actrea join actividad act on ar.cve_act=act.cve_act where curp_per='" + curpEmp + "'"
+
+    connection.query($query, function (err, rows, fields) {
+        if (err) {
+            console.log("ERROR")
+            return console.log(err.stack)
+        }
+
+        if (rows[0].nombre === null) {
+            return
+        }
+
+        var html = ''
+
+        html += "<div class='row mb-2 mt-5'>"
+            html += "<h4 class='col-md-5'>Actividades asignadas</h4>"
+
+            html += "<label class='col-md-4'></label>"
+
+            html += "<div class='btn-group col-md-3' role='group' aria-label='Basic example'>"
+                html += "<button type='button' class='btn btn-info'>Ir a Actividades</button>"
+            html += "</div>"
+
+        html += "</div>"
+
+        html += "<table class='table' id='tabla'>"
+            html += "<thead class='thead-light'>"
+                html += "<tr>"
+                    html += "<th scope='col'>Obra</th>"
+                    html += "<th scope='col'>Actividad</th>"
+                    html += "<th scope='col'>Avance/Total</th>"
+                    html += "<th scope='col'>U. medida</th>"
+                    html += "<th scope='col'>Progreso</th>"
+                html += "</tr>"
+            html += "</thead>"
+
+            html += "<tbody>"
+
+        rows.forEach(row => {
+            html += "<tr class='text-justify'>"
+                html += "<th scope='row'>" + row.cve_con + "</th>"
+                html += "<td>" + row.nom_act + "</td>"
+                html += "<td>" + row.avance + "/" + row.cant_traact + "</td>"
+                html += "<td>" + row.umedida_ava + "</td>"
+
+                var progreso = row.avance * 100 / row.cant_traact
+
+                html += "<td>"
+                    html += "<div class='progress'>"
+                        html += "<div class='progress-bar' role='progressbar' style='width: " + progreso + "%;' aria-valuenow='" + progreso + "' aria-valuemin='0' aria-valuemax='100'>" + progreso + "%</div>"
+                    html += "</div>"
+                html += "</td>"
+
+            html += "</tr>"
+        });
+
+            html += "</tbody>"
+        html += "</table>"
+
+        html += "<hr class='mb-3'>"
+
+        $(".dashboard").append(html)
     })
 }

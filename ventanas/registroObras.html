@@ -23,110 +23,72 @@
     <div class="forma mt-3">
         <!-- <h2>Registro de personas</h2> -->
 
-        <h4 class="mb-4">Datos personales</h4>
+        <h4 class="mb-4">Datos de la cita</h4>
 
-        <form class="needs-validation" novalidate action="./registroPersonasContrato.html">
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <label for="nombre">Nombre</label>
-                    <input type="text" class="form-control" id="nombre" placeholder="" value="" required>
-                    <div class="invalid-feedback">
-                        Ingrese un nombre válido.
-                    </div>
-                </div>
-    
-                <div class="col-md-6 mb-3">
-                    <label for="apellido">Apellido</label>
-                    <input type="text" class="form-control" id="apellido" placeholder="" value="" required>
-                    <div class="invalid-feedback">
-                        Ingrese un apellido válido.
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-4 mb-3">
-                    <label for="genero">Sexo</label>
-                    <select class="custom-select d-block w-100" id="genero" required>
-                        <option value="">Elige...</option>
-                        <option value="M">Masculino</option>
-                        <option value="F">Femenino</option>
-                    </select>
-            
-                    <div class="invalid-feedback">
-                        Elija un sexo válido.
-                    </div>
-                </div>
-
-                <div class="col-md-4 mb-3">
-                    <label for="edocivil">Estado civil</label>
-                    <select class="custom-select d-block w-100" id="edocivil" required>
-                        <option value="">Elige...</option>
-                        <option value="Soltero">Soltero/a</option>
-                        <option value="Casado">Casado/a</option>
-                        <option value="Viudo">Viudo/a</option>
-                    </select>
-            
-                    <div class="invalid-feedback">
-                        Elija su estado civil.
-                    </div>
-                </div>
-
-                <div class="col-md-4 mb-3">
-                    <label for="fnac">Fecha de nacimiento</label>
-
-                    <!-- <div class="input-group date" data-provide="datepicker" data-date-format="mm-dd-yyyy">
-                        <input type="text" class="form-control" id="fnac">
-                        <div class="input-group-addon">
-                            <span class="glyphicon glyphicon-th"></span>
-                        </div>
-                    </div> -->
-
+        <form class="needs-validation" novalidate action="./registroObrasContrato.html">
+            <div class="row ">
+                <div class="col-md-2 mb-3">
+                    <label for="fecha">Fecha</label>
                     <div class="input-group date">
-                        <input type="text" class="form-control" id="fnac">
+                        <input type="text" class="form-control" id="fecha">
                         <div class="input-group-addon">
                             <!-- <span class="glyphicon glyphicon-th"></span> -->
                             <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
                         </div>
                     </div>
-            
+
                     <div class="invalid-feedback">
-                        Ingrese su fecha de nacimiento.
+                        Ingrese una fecha válida.
                     </div>
                 </div>
+    
+                <div class="col-md-2 mb-3">
+                    <label for="hi">Hora de inicio</label>
+                    <input type="time" class="form-control" id="hi" placeholder="" value="" required>
+                    <div class="invalid-feedback">
+                        Ingrese una hora válida.
+                    </div>
+                </div>
+
+                <div class="col-md-2 mb-3">
+                    <label for="hf">Hora de fin</label>
+                    <input type="time" class="form-control" id="hf" placeholder="" value="" required>
+                    <div class="invalid-feedback">
+                        Ingrese una hora válida.
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label for="cliente">Cliente</label>
+                    <select class="custom-select d-block w-100" id="cliente" required>
+                        <option value="">Elige...</option>
+                    </select>
+            
+                    <div class="invalid-feedback">
+                        Elija una opción válida.
+                    </div>
+                </div>
+
+                <div class="col-md-2 mb-3">
+                    <button type="button" class="btn btn-secondary btn-lg mt-2" id="verificar">Verificar disponibilidad</button>
+                </div>
+
+                <!-- <div class="col-md-2 mb-3">
+                    <label for="arquitecto">Arquitecto</label>
+                    <select class="custom-select d-block w-100" id="arquitecto" required>
+                        <option value="">Elige...</option>
+                    </select>
+            
+                    <div class="invalid-feedback">
+                        Elija una opción válida.
+                    </div>
+                </div> -->
 
             </div>
 
             <div class="row">
-                <div class="col-md-6 mb-3">
-                    <label for="curp">CURP</label>
-                    <input type="text" class="form-control" id="curp" placeholder="" value="" required>
-                    <div class="invalid-feedback">
-                        Ingrese una CURP válida.
-                    </div>
-                </div>                
-
-            </div>
-
-            <h4 class="mb-4 mt-4">Datos de contacto</h4>
-
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <label for="email">Correo electrónico</label>
-                    <input type="text" class="form-control" id="email" placeholder="" value="" required>
-            
-                    <div class="invalid-feedback">
-                        Ingrese un correo electronico válido.
-                    </div>
-                </div>
-
-                <div class="col-md-6 mb-3">
-                    <label for="tel">Teléfono</label>
-                    <input type="text" class="form-control" id="tel" placeholder="" value="" required>
-            
-                    <div class="invalid-feedback">
-                        Ingrese un núm. de teléfono válido.
-                    </div>
+                <div class="col-md-6 mb-3" id="renglonArquitecto">
+                    <!-- Aqui va el nombre del arquitecto una vez verificada la disponibilidad -->
                 </div>
 
             </div>
@@ -145,7 +107,7 @@
 
                 <div class="col-md-2 mb-3">
                     <label for="numero">Número</label>
-                    <input type="text" class="form-control" id="numero" placeholder="" value="" required>
+                    <input type="number" class="form-control" id="numero" placeholder="" value="" required>
             
                     <div class="invalid-feedback">
                         Ingrese un número de casa válido.
@@ -157,13 +119,13 @@
                     <input type="text" class="form-control" id="orient" placeholder="" value="" required>
             
                     <div class="invalid-feedback">
-                        Ingrese una orientación válido.
+                        Ingrese una orientación válida.
                     </div>
                 </div>
 
             </div>
 
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="enCal">Entre calles</label>
                     <input type="text" class="form-control" id="enCal" placeholder="" value="" required>
@@ -173,7 +135,7 @@
                     </div>
                 </div>
 
-            </div>
+            </div> -->
 
             <div class="row">
                 <div class="col-md-4 mb-3">
@@ -235,21 +197,12 @@
 
     <script src="../scripts/mainScript.js"></script>
     <!-- <script src="../scripts/database/connection.js"></script> -->
-    <script src="../scripts/registroPersonas.js"></script>
-    <script src="../scripts/registroPersonaVal.js"></script>
+    <!-- <script src="../scripts/registroPersonas.js"></script>
+    <script src="../scripts/registroPersonaVal.js"></script> -->
+    <script src="../scripts/registroObras.js"></script>
 
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0-rc.6/js/bootstrap-datepicker.min.js"></script> -->
     <script src="../bootstrap/datepicker/js/bootstrap-datepicker.min.js"></script>
-
-    <!-- <script>
-        $('.datepicker').datepicker({
-            format: "yyyy-mm-dd",
-            startDate: "0d",
-            todayBtn: true,
-            language: "es",
-            todayHighlight: true
-        });
-    </script> -->
 
     <script>
         $('.input-group.date').datepicker({

@@ -1,14 +1,14 @@
+var electron = require('electron')
+var connection = electron.remote.require('./main').connection
+
 $(document).ready(function () {
     setCiudades()
 })
-
 
 $("#colonia").change(function () {
     console.log( $(this).val() );
     
 })
-
-
 
 $('#ciudad').change(function () {
     var opcion = $('#ciudad option:selected').text()

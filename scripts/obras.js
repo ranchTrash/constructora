@@ -325,6 +325,8 @@ function seleccionaObra(claveObra) {
         setTrabajadores(claveObra)
         setMateriales(claveObra)
         setPermisos(claveObra)
+
+        feather.replace()
     })
 }
 
@@ -353,8 +355,11 @@ function generarTablaActividades($query) {
 
             // html += "<input class='form-control col-md-3' type='text' placeholder='Buscar' aria-label='Search'>"
 
+            // html += "<span data-feather='file-text'></span>"
+
             html += "<div class='btn-group col-md-3' role='group' aria-label='Basic example'>"
-                html += "<button type='button' class='btn btn-secondary'>Ir a Actividades</button>"
+                html += "<button type='button' class='btn btn-info' id='agregarActividad'>+</button>"
+                html += "<button type='button' class='btn btn-info'>Ir a Actividades</button>"
             html += "</div>"
 
         html += "</div>"
@@ -423,7 +428,8 @@ function generarTablaTrabajadores($query) {
             html += "<label class='col-md-4'></label>"
 
             html += "<div class='btn-group col-md-3' role='group' aria-label='Basic example'>"
-                html += "<button type='button' class='btn btn-secondary'>Ir a Trabajadores</button>"
+                html += "<button type='button' class='btn btn-info' id='agregarTrabajador'>+</button>"
+                html += "<button type='button' class='btn btn-info'>Ir a Trabajadores</button>"
             html += "</div>"
 
         html += "</div>"
@@ -489,7 +495,8 @@ function generarTablaMateriales($query) {
             html += "<label class='col-md-4'></label>"
 
             html += "<div class='btn-group col-md-3' role='group' aria-label='Basic example'>"
-                html += "<button type='button' class='btn btn-secondary'>Ir a Materiales</button>"
+                html += "<button type='button' class='btn btn-info' id='agregarMaterial'>+</button>"
+                html += "<button type='button' class='btn btn-info'>Ir a Materiales</button>"
             html += "</div>"
 
         html += "</div>"
@@ -544,7 +551,8 @@ function generarTablaPermisos($query) {
             html += "<label class='col-md-4'></label>"
 
             html += "<div class='btn-group col-md-3' role='group' aria-label='Basic example'>"
-                html += "<button type='button' class='btn btn-secondary'>Ir a Permisos</button>"
+                html += "<button type='button' class='btn btn-info' id='agregarPermiso'>+</button>"
+                html += "<button type='button' class='btn btn-info'>Ir a Permisos</button>"
             html += "</div>"
 
         html += "</div>"
