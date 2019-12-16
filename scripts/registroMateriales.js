@@ -1,9 +1,13 @@
+var rowHtml = $("#datosResurtido").html()
+
 $("#si").on('click', function () {
     $("#entrada input").prop('disabled', false);
+    $("#agregar").prop('disabled', false);
 })
 
 $("#no").on('click', function () {
     $("#entrada input").prop('disabled', true);
+    $("#agregar").prop('disabled', true);
 })
 
 $("#button").on('click', function () {
@@ -11,10 +15,6 @@ $("#button").on('click', function () {
 })
 
 $("#agregar").on('click', function () {
-  var rowHtml = $("#datosResurtido").html()
-
-  var html = ''
-
   $("#datosResurtido").append(rowHtml)
 })
 

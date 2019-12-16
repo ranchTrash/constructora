@@ -20,8 +20,8 @@ function sleep(ms) {
             event.preventDefault()
             event.stopPropagation()
           } else {
-            getDatos()
-            await sleep(2000)
+            // getDatos()
+            // await sleep(2000)
           }
           form.classList.add('was-validated')
         }, false)
@@ -96,5 +96,4 @@ function sleep(ms) {
 
 $("#btnTest").on('click', function () {
   // getDatos()
-  
 })

@@ -30,7 +30,7 @@ $("#verificar").on('click', function () {
 })
 
 $("#btnTest").on('click', function () {
-    //  getDatos()
+    getDatos()
 })
 
 $('#ciudad').change(function () {
@@ -143,9 +143,9 @@ function agregarEstadoCita() {
 
     connection.query($query, function (err, rows, fields) {
         if (err) { 
-        connection.rollback(function() {
-            throw err;
-        });
+            connection.rollback(function() {
+                throw err;
+            });
         }
         console.log("estadocita agregada con exito");
     })

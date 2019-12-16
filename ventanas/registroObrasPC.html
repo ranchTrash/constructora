@@ -57,6 +57,8 @@
                 </div>
             </div>
 
+            <!-- TABLA -->
+
             <div class="col-md-12">
                 <table class="table" id="tabla">
                     <thead class="thead-light">
@@ -97,6 +99,61 @@
                 </div>
             </div>
 
+            <div class="row">
+                <div class="col-md-2 mb-3">
+                    <label for="fechaPercon">Fecha</label>
+                    <div class="input-group date">
+                        <input type="text" class="form-control" id="fechaPercon">
+                        <div class="input-group-addon">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                        </div>
+                    </div>
+
+                    <div class="invalid-feedback">
+                        Ingrese una fecha válida.
+                    </div>
+                </div>
+
+                <div class="col-md-5 mb-3">
+                    <label for="costo">Costo</label>
+                    <input type="number" class="form-control" id="costo" placeholder="" value="" required>
+                    <div class="invalid-feedback">
+                        Ingrese un costo válido.
+                    </div>
+                </div>
+
+                <div class="col-md-2 mb-3">
+                    <label for="fi">Fecha de inicio</label>
+                    <div class="input-group date">
+                        <input type="text" class="form-control" id="fi">
+                        <div class="input-group-addon">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                        </div>
+                    </div>
+
+                    <div class="invalid-feedback">
+                        Ingrese una fecha válida.
+                    </div>
+                </div>
+
+                <div class="col-md-2 mb-3">
+                    <label for="ff">Fecha de fin</label>
+                    <div class="input-group date">
+                        <input type="text" class="form-control" id="ff">
+                        <div class="input-group-addon">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                        </div>
+                    </div>
+
+                    <div class="invalid-feedback">
+                        Ingrese una fecha válida.
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- TABLA -->
+
             <div class="col-md-12">
                 <table class="table" id="tabla">
                     <thead class="thead-light">
@@ -104,6 +161,10 @@
                             <th scope="col">#</th>
                             <th scope="col">Tipo</th sc>
                             <th scope="col">Descripción</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Costo($)</th>
+                            <th scope="col">Fecha inicio</th>
+                            <th scope="col">Fecha fin</th>
                         </tr>
                     </thead>
                     <tbody id="bodyTablaP">

@@ -56,9 +56,9 @@ function agregarContrato(fechai, fechaf, tipo, honorariosarq, metroscuadra, cost
 
     connection.query($query, v, function (err, rows, fields) {
         if (err) { 
-        connection.rollback(function() {
-            throw err;
-        });
+          connection.rollback(function() {
+              throw err;
+          });
         }
         console.log("contrato agregado con exito");
     })
@@ -71,9 +71,9 @@ function agregarAnticipo(fecha, tipo, monto) {
 
     connection.query($query, v, function (err, rows, fields) {
         if (err) { 
-        connection.rollback(function() {
-            throw err;
-        });
+          connection.rollback(function() {
+              throw err;
+          });
         }
         console.log("anticipo agregado con exito");
     })
