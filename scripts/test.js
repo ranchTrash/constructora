@@ -5,7 +5,7 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-(function () {
+(async function () {
     'use strict'
 
     window.addEventListener('load', async function () {  
@@ -19,8 +19,8 @@ function sleep(ms) {
                 event.preventDefault()
                 event.stopPropagation() 
           } else {
-                // transaccion($("#nombre").val())
-                // await sleep(5000)
+                transaccion($("#nombre").val())
+                await sleep(100)
           }
           form.classList.add('was-validated')
         }, false)
@@ -37,8 +37,8 @@ $("#button").on('click', async function () {
     transaccion(nombre)
 })
 
-async function transaccion(nombre) {
-    connection.beginTransaction(async function (err) {
+function transaccion(nombre) {
+    connection.beginTransaction(function (err) {
         if (err) {
           console.log("ERROR");
           return err.stack
@@ -72,9 +72,9 @@ async function transaccion(nombre) {
         })
     })   
     
-    console.log("esperando transaccion");
+    // console.log("esperando transaccion");
     
-    await sleep(3000)
+    // await sleep(300)
 
     // console.log("esperando...");
 

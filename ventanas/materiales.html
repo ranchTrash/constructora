@@ -32,11 +32,11 @@
         <ul class="navbar-nav px-3">
             <li class="nav-item text-nowrap">
                 <div class="btn-group" role="group" aria-label="Ejemplo">
-                    <button class="btn btn-secondary btn-sm" type="button">
+                    <button class="btn btn-danger btn-sm" type="button">
                         <a class="nav-link  text-reset" href="#" id="registro">Registrar material</a>
                     </button>  
-                    <button class="btn btn-secondary btn-sm" type="button">
-                        <a class="nav-link  text-reset" href="#" id="registro">Resurtir material</a>
+                    <button class="btn btn-danger btn-sm" type="button">
+                        <a class="nav-link  text-reset" href="#" id="resurtir">Resurtir material</a>
                     </button>   
                 </div> 
             </li>
@@ -142,17 +142,16 @@
 
                         <div class="dropdown">
                             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                Obras
+                                Materiales en existencia
                             </button>
                             <div class="dropdown-menu">
                                 <!-- <a class="dropdown-item" href="#">Obras</a> -->
-                                <a class="dropdown-item" href="#">Activas</a>
-                                <a class="dropdown-item" href="#">Terminadas</a>
-                                <a class="dropdown-item" href="#">Canceladas</a>
+                                <a class="dropdown-item" href="#" id="matexistencia">Materiales en existencia</a>
+                                <a class="dropdown-item" href="#" id="matagotados">Materiales agotados</a>
                             </div>
                         </div> 
 
-                        <input class="form-control" type="number" placeholder="Buscar" aria-label="Search">
+                        <input class="form-control" type="text" placeholder="Buscar" aria-label="Search">
                     </div>
 
                     <div class="lista-obras">
@@ -202,7 +201,7 @@
     <!-- <script src="../bootstrap/libraries/Chart.min.js"></script> -->
 
     <script src="../scripts/mainScript.js"></script>
-    <script src="../scripts/database/connection.js"></script>
+    <!-- <script src="../scripts/database/connection.js"></script> -->
     <!-- <script src="../scripts/obras.js"></script> -->
     <script src="../scripts/materiales.js"></script>
 
@@ -210,13 +209,19 @@
     <script>
         var electron = require('electron')
         var runExec = electron.remote.require('./main').openRegistroMaterial
+        var test = electron.remote.require('./main').openTest
     
         const button = document.getElementById('registro')
+        const button2 = document.getElementById('resurtir')
     
         button.addEventListener('click', function() {
             runExec()
-            console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-            
+            // console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        })
+
+        button2.addEventListener('click', function() {
+            test()
+            // console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
         })
     </script>
 

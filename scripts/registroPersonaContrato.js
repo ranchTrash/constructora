@@ -32,7 +32,11 @@ $("input[name ='dia']").on('click', function () {
 })
 
 $("#btnTest").on('click', function () {
-  getDatos()
+  // getDatos()
+  // console.log("esperando");
+  // setTimeout("aceptar()", 5000)
+  // console.log("ya");
+  
 })
 
 // checar si es albanil para agregar actividades
@@ -105,7 +109,7 @@ $("#btnAgregar").on('click', function () {
 ///////
 
 function getActividades() {
-    $query = "select cve_act, nom_act from actividad"
+    $query = "select cve_act, nom_act from actividad order by nom_act asc"
 
     connection.query($query, function (err, rows, fields) {
         if (err) {
@@ -140,11 +144,13 @@ async function getDatos() {
   // console.log(fi + ff + puesto + sueldo + nss);
 
   agregarContrato(fi, ff, puesto, sueldo, nss)
-  console.log("esperando contrato...");
-  await sleep(1000)
+
+  // var p = getMax()
+  // console.log("esperando contrato...");
+  // await sleep(1000)
   agregarHorario()
-  console.log("esperando horario...");
-  await sleep(1000)
+  // console.log("esperando horario...");
+  // await sleep(1000)
   
   // Temporal
   var dias = []
@@ -177,8 +183,17 @@ async function getDatos() {
     }
   }
 
-  console.log("esperando diahora...");
-  await sleep(5000)
+  // console.log("esperando diahora...");
+  // await sleep(5000)
+
+  if (puesto.localeCompare('Albanil') === 0) {
+    $("#bodyTabla > tr").each(function () {
+      var claveAct = $(this).find("th").eq(0).text()
+      agregarPuedoHacer(claveAct)
+    }) 
+  }
+
+  var p = getMax()
 
   connection.commit(function(err) {
     if (err) { 
@@ -235,6 +250,24 @@ function agregarDiaHora(dia, he, hs, tipo) {
   })
 }
 
+function agregarPuedoHacer(claveAct) {
+  $query = "call sp_agregaPuedoHacer(?)"
+
+  connection.query($query, claveAct, function (err, rows, fields) {
+      if (err) { 
+          connection.rollback(function() {
+              throw err;
+          });
+      }
+      console.log("puedohacer agregado con exito");
+  })
+}
+
+function getMax() {
+  var max = 0
+  return max
+}
+
 (async function () {
     'use strict'
 
@@ -250,7 +283,7 @@ function agregarDiaHora(dia, he, hs, tipo) {
             event.stopPropagation()
           } else {
             getDatos()
-            await sleep(2000)
+            await sleep(100)
           }
           form.classList.add('was-validated')
         }, false)

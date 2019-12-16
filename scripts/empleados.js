@@ -27,7 +27,6 @@ $(document).ready(function () {
     filtroSeleccionado = 'empleados'
 })
 
-
 $('.dropdown-item').on('click', function () {
     var opcion = $(this).text()
 

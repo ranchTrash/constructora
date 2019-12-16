@@ -5,7 +5,7 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-(function () {
+(async function () {
     'use strict'
 
     window.addEventListener('load', async function () {  
@@ -19,8 +19,8 @@ function sleep(ms) {
                 event.preventDefault()
                 event.stopPropagation() 
           } else {
-                // transaccion($("#nombre").val())
-                // await sleep(5000)
+                transaccion($("#apellido").val())
+                await sleep(100)
           }
           form.classList.add('was-validated')
         }, false)
@@ -37,7 +37,7 @@ $("#button").on('click', async function () {
     transaccion(apellido)
 })
 
-async function transaccion(apellido) {
+function transaccion(apellido) {
     // connection.beginTransaction(async function (err) {
     //     if (err) {
     //       console.log("ERROR");
@@ -84,15 +84,15 @@ async function transaccion(apellido) {
     //     console.log("conexion cerrada con exito");
     // });
 
-    await sleep(1000)
+    // await sleep(100)
 
     var folio = getMax()
 
-    console.log("esperando folio...");
+    // console.log("esperando folio...");
     
-    await sleep(1000)
+    // await sleep(100)
 
-    console.log("folio = " + folio);
+    // console.log("folio = " + folio);
     
 
     $query = "call agregaTT(?)"
@@ -117,31 +117,31 @@ async function transaccion(apellido) {
       });
   })
 
-  await sleep(3000)
+  // await sleep(300)
 
-  connection.end(function(){
-    // The connection has been closed
-    console.log("conexion cerrada con exito");
-  });
+  // connection.end(function(){
+  //   // The connection has been closed
+  //   console.log("conexion cerrada con exito");
+  // });
 
 }
 
 function getMax() {
-    $query = "select max(cve_t) as max from test"
+    // $query = "select max(cve_t) as max from test"
 
     var max = 0
 
-    connection.query($query, function (err, rows, fields) {
-        if (err) { 
-            return console.log(err.stack) 
-        }
-        console.log(rows);
+    // connection.query($query, function (err, rows, fields) {
+    //     if (err) { 
+    //         return console.log(err.stack) 
+    //     }
+    //     console.log(rows);
 
-        console.log(rows[0].max);
+    //     console.log(rows[0].max);
 
-        max = rows[0].max
+    //     max = rows[0].max
         
-    })
+    // })
 
     return max
 }

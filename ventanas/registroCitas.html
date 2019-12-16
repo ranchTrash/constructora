@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="../styles/global_style.css">
+    <link rel="stylesheet" href="../styles/registroPersonas_style/registroPersonas.css">
+
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0-rc.6/css/datepicker3.min.css"> -->
+    <link rel="stylesheet" href="../bootstrap/datepicker/css/bootstrap-datepicker3.min.css">
+
+    <title>Registro</title>
+  </head>
+
+<body class="bg-light">
+
+    <div class="forma mt-3">
+        <!-- <h2>Registro de personas</h2> -->
+
+        <h4 class="mb-4">Datos de la cita anterior</h4>
+
+        <form class="needs-validation" novalidate action="">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label for="obra">Obra</label>
+                    <select class="custom-select d-block w-100" id="obra" required>
+                        <option value="">Elige...</option>
+                    </select>
+            
+                    <div class="invalid-feedback">
+                        Elija una opción válida.
+                    </div>
+                </div>
+
+            </div>
+
+            <h4 class="mb-4">Datos de nueva cita</h4>
+
+            <div class="row ">
+                <div class="col-md-2 mb-3">
+                    <label for="fecha">Fecha</label>
+                    <div class="input-group date">
+                        <input type="text" class="form-control" id="fecha">
+                        <div class="input-group-addon">
+                            <!-- <span class="glyphicon glyphicon-th"></span> -->
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                        </div>
+                    </div>
+
+                    <div class="invalid-feedback">
+                        Ingrese una fecha válida.
+                    </div>
+                </div>
+    
+                <div class="col-md-2 mb-3">
+                    <label for="hi">Hora de inicio</label>
+                    <input type="time" class="form-control" id="hi" placeholder="" value="" required>
+                    <div class="invalid-feedback">
+                        Ingrese una hora válida.
+                    </div>
+                </div>
+
+                <div class="col-md-2 mb-3">
+                    <label for="hf">Hora de fin</label>
+                    <input type="time" class="form-control" id="hf" placeholder="" value="" required>
+                    <div class="invalid-feedback">
+                        Ingrese una hora válida.
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label for="cliente">Cliente</label>
+                    <select class="custom-select d-block w-100" id="cliente" required>
+                        <option value="">Elige...</option>
+                    </select>
+            
+                    <div class="invalid-feedback">
+                        Elija una opción válida.
+                    </div>
+                </div>
+
+                <div class="col-md-2 mb-3">
+                    <button type="button" class="btn btn-secondary btn-lg mt-2" id="verificar">Verificar disponibilidad</button>
+                </div>
+
+                <!-- <div class="col-md-2 mb-3">
+                    <label for="arquitecto">Arquitecto</label>
+                    <select class="custom-select d-block w-100" id="arquitecto" required>
+                        <option value="">Elige...</option>
+                    </select>
+            
+                    <div class="invalid-feedback">
+                        Elija una opción válida.
+                    </div>
+                </div> -->
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3" id="renglonArquitecto">
+                    <!-- Aqui va el nombre del arquitecto una vez verificada la disponibilidad -->
+                </div>
+
+            </div>
+
+            <h4 class="mb-4 mt-4">Dirección</h4>
+
+            <div class="row">
+                <div class="col-md-7 mb-3">
+                    <label for="calle">Calle</label>
+                    <input type="text" class="form-control" id="calle" placeholder="" value="" required>
+            
+                    <div class="invalid-feedback">
+                        Ingrese una calle válida.
+                    </div>
+                </div>
+
+                <div class="col-md-2 mb-3">
+                    <label for="numero">Número</label>
+                    <input type="number" class="form-control" id="numero" placeholder="" value="" required>
+            
+                    <div class="invalid-feedback">
+                        Ingrese un número de casa válido.
+                    </div>
+                </div>
+
+                <div class="col-md-3 mb-3">
+                    <label for="orient">Orientación</label>
+                    <input type="text" class="form-control" id="orient" placeholder="" value="" required>
+            
+                    <div class="invalid-feedback">
+                        Ingrese una orientación válida.
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="enCal">Entre calles</label>
+                    <input type="text" class="form-control" id="enCal" placeholder="" value="" required>
+            
+                    <div class="invalid-feedback">
+                        Ingrese calles válidas.
+                    </div>
+                </div>
+
+            </div> -->
+
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label for="ciudad">Ciudad</label>
+                    <select class="custom-select d-block w-100" id="ciudad" required>
+                        <option value="">Elige...</option>
+                    </select>
+            
+                    <div class="invalid-feedback">
+                        Elija una ciudad.
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label for="codpos">Codigo postal</label>
+                    <select class="custom-select d-block w-100" id="codpos" required>
+                        <option value="">Elige...</option>
+                    </select>
+            
+                    <div class="invalid-feedback">
+                        Elija un código postal.
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label for="colonia">Colonia</label>
+                    <select class="custom-select d-block w-100" id="colonia" required>
+                        <option value="">Elige...</option>
+                    </select>
+            
+                    <div class="invalid-feedback">
+                        Elija una colonia.
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="mt-3 mb-2">
+                    <button type="submit" class="btn btn-primary btn-lg mr-5">Aceptar</button>
+                    <button type="button" class="btn btn-secondary btn-lg" id="btnTest">Cancelar</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+    <script>window.$ = window.jQuery = require('../scripts/jQuery/jquery.min.js')</script>
+    <script src="../bootstrap/libraries/jquery-3.3.1.slim.min.js"></script>
+    <script src="../bootstrap/libraries/popper.min.js"></script>
+    <script src="../bootstrap/libraries/bootstrap.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- <script src="../bootstrap/libraries/feather.min.js"></script> -->
+    <script src="../bootstrap/libraries/feather-icons/4.21.1/feather.min.js"></script>
+
+    <script src="../scripts/mainScript.js"></script>
+    <!-- <script src="../scripts/database/connection.js"></script> -->
+    <!-- <script src="../scripts/registroPersonas.js"></script>
+    <script src="../scripts/registroPersonaVal.js"></script> -->
+    <script src="../scripts/registroObras.js"></script>
+
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0-rc.6/js/bootstrap-datepicker.min.js"></script> -->
+    <script src="../bootstrap/datepicker/js/bootstrap-datepicker.min.js"></script>
+
+    <script>
+        $('.input-group.date').datepicker({
+            format: "yyyy-mm-dd",
+            autoclose: true,
+            // startDate: "0d",
+            // todayBtn: true,
+            language: "es",
+            // todayHighlight: true
+        });
+    </script>
+
+</body>
+</html>

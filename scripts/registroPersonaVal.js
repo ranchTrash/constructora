@@ -20,8 +20,8 @@ function sleep(ms) {
             event.preventDefault()
             event.stopPropagation()
           } else {
-            // getDatos()
-            // await sleep(2000)
+            getDatos()
+            await sleep(100)
           }
           form.classList.add('was-validated')
         }, false)
@@ -51,7 +51,7 @@ function sleep(ms) {
 
     console.log(nom + " " + ap + " " + am + " " + genero + " " + edocivil + mail + fnac + calle + num + orient + entrecalles + tel + col + curp); 
 
-    agregarPersona(nom, ap, am, genero, edocivil, mail, fnac, calle, num, orient, entrecalles, tel, col, curp)
+    agregarPersona(ap, am, nom, genero, edocivil, mail, fnac, calle, num, orient, entrecalles, tel, col, curp)
     
   }
 
@@ -67,9 +67,6 @@ function sleep(ms) {
     //     }
     // })
 
-    // $query = "insert into persona values('" + ap + ", '" + am + "', '" + nom + "', '" + genero + "', '" + edocivil + "', '" + mail + "', '" + fnac + "', '" + calle + "', " + num + ", '" + orient + "', '" + entrecalles + "', " + tel + ", " + col + ", " + curp + ")"
-
-    
     connection.beginTransaction(function (err) {
       if (err) { 
         connection.rollback(function() {

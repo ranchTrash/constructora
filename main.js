@@ -133,6 +133,40 @@ function openRegistroObra() {
   })
 }
 
+function openRegistroCita() {
+  winRP = new BrowserWindow({
+    width: 1200,
+    height: 700,
+    autoHideMenuBar: true,
+    webPreferences: {
+      nodeIntegration: true
+    }
+  })
+
+  winRP.loadFile('ventanas/registroCitas.html')
+
+  win.on('closed', () => {
+    win = null
+  })
+}
+
+function openTest() {
+  winRP = new BrowserWindow({
+    width: 1200,
+    height: 700,
+    autoHideMenuBar: true,
+    webPreferences: {
+      nodeIntegration: true
+    }
+  })
+
+  winRP.loadFile('ventanas/test.html')
+
+  win.on('closed', () => {
+    win = null
+  })
+}
+
 ////////////////////////////////////////////
 
 var mysql = require("mysql");
@@ -161,6 +195,8 @@ exports.runExec = runExec;
 exports.openRegistroPersona = openRegistroPersona;
 exports.openRegistroMaterial = openRegistroMaterial;
 exports.openRegistroObra = openRegistroObra;
+
+exports.openTest = openTest;
 
 exports.connection = connection;
 // exports.openRegistroPersona = openRegistroPersona;

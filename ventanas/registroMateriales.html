@@ -11,6 +11,7 @@
 
     <link rel="stylesheet" type="text/css" href="../styles/global_style.css">
     <link rel="stylesheet" href="../styles/registroPersonas_style/registroPersonas.css">
+    <link rel="stylesheet" href="../bootstrap/datepicker/css/bootstrap-datepicker3.min.css">
 
     <title>Registro de material</title>
   </head>
@@ -95,46 +96,8 @@
 
             <!-- //////////////////////// -->
 
-            <div class="row mt-3" id="datosResurtido">
-                <div class="col-md-3 mb-3" id="entrada">
-                    <label for="cantidad">Cantidad</label>
-                    <input type="number" class="form-control" id="cantidad" placeholder="" value="" required>
-                    <div class="invalid-feedback">
-                        Ingrese una cantidad válida.
-                    </div>
-                </div>
-
-                <div class="col-md-3 mb-3" id="entrada">
-                    <label for="fechacad">Fecha de caducidad</label>
-                    <input type="date" class="form-control" id="fechacad" placeholder="" value="" required>
-                    <div class="invalid-feedback">
-                        Ingrese una fecha válida.
-                    </div>
-                </div>
-
-                <div class="col-md-3 mb-3" id="entrada">
-                    <label for="ppu">Pago por unidad</label>
-                    <input type="number" class="form-control" id="ppu" placeholder="" value="" required>
-                    <div class="invalid-feedback">
-                        Ingrese una cantidad válida.
-                    </div>
-                </div>
-
-                <div class="col-md-3 mb-3">
-                    <label for="fecha">Fecha de resurtido</label>
-                    <input type="date" class="form-control" id="fecha" placeholder="" value="" required disabled>
-                    <div class="invalid-feedback">
-                        Ingrese una cantidad válida.
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- //////////////////////// -->
-
-
-            <!-- <form id="formaResurtir" class="needs-validation" novalidate>
-                <div class="row">
+            <div id="renglones">
+                <div class="row mt-3" id="datosResurtido">
                     <div class="col-md-3 mb-3" id="entrada">
                         <label for="cantidad">Cantidad</label>
                         <input type="number" class="form-control" id="cantidad" placeholder="" value="" required>
@@ -142,15 +105,21 @@
                             Ingrese una cantidad válida.
                         </div>
                     </div>
-
-                    <div class="col-md-3 mb-3" id="entrada">
+    
+                    <div class="col-md-3 mb-3">
                         <label for="fechacad">Fecha de caducidad</label>
-                        <input type="date" class="form-control" id="fechacad" placeholder="" value="" required>
+                        <div class="input-group date" data-provide="datepicker">
+                            <input type="text" class="form-control" id="fechacad">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-th"></span>
+                            </div>
+                        </div>
+                
                         <div class="invalid-feedback">
-                            Ingrese una fecha válida.
+                            Ingrese la fecha de caducidad.
                         </div>
                     </div>
-
+    
                     <div class="col-md-3 mb-3" id="entrada">
                         <label for="ppu">Pago por unidad</label>
                         <input type="number" class="form-control" id="ppu" placeholder="" value="" required>
@@ -158,18 +127,18 @@
                             Ingrese una cantidad válida.
                         </div>
                     </div>
-
+    
                     <div class="col-md-3 mb-3">
                         <label for="fecha">Fecha de resurtido</label>
-                        <input type="date" class="form-control" id="fecha" placeholder="" value="" required disabled>
+                        <input type="text" class="form-control" id="fecha" placeholder="" value="" required disabled>
                         <div class="invalid-feedback">
                             Ingrese una cantidad válida.
                         </div>
                     </div>
-
+    
                 </div>
 
-            </form> -->
+            </div>
 
 
             <div class="row justify-content-center">
@@ -195,8 +164,21 @@
     <script src="../bootstrap/libraries/feather-icons/4.21.1/feather.min.js"></script>
 
     <script src="../scripts/mainScript.js"></script>
-    <script src="../scripts/database/connection.js"></script>
+    <!-- <script src="../scripts/database/connection.js"></script> -->
     <script src="../scripts/registroMateriales.js"></script>
+
+    <script src="../bootstrap/datepicker/js/bootstrap-datepicker.min.js"></script>
+
+    <script>
+        $('.input-group.date').datepicker({
+            format: "yyyy-mm-dd",
+            autoclose: true,
+            // startDate: "0d",
+            // todayBtn: true,
+            language: "es",
+            // todayHighlight: true
+        });
+    </script>
 
 </body>
 </html>
