@@ -6,6 +6,10 @@ const { remote } = require('electron')
 let win
 var connection
 
+global.obra = {
+  prop1: null
+};
+
 function createWindow() {
   // create the browser window
   win = new BrowserWindow({
@@ -150,6 +154,110 @@ function openRegistroCita() {
   })
 }
 
+function openRegistroActividades() {
+  winRP = new BrowserWindow({
+    width: 900,
+    height: 700,
+    autoHideMenuBar: true,
+    webPreferences: {
+      nodeIntegration: true
+    }
+  })
+
+  winRP.loadFile('ventanas/registroActividades.html')
+
+  win.on('closed', () => {
+    win = null
+  })
+}
+
+function agregarActividad() {
+  winRP = new BrowserWindow({
+    width: 900,
+    height: 700,
+    autoHideMenuBar: true,
+    webPreferences: {
+      nodeIntegration: true
+    }
+  })
+
+  winRP.loadFile('ventanas/agregarActividad.html')
+
+  win.on('closed', () => {
+    win = null
+  })
+}
+
+function agregarTrabajador() {
+  winRP = new BrowserWindow({
+    width: 900,
+    height: 700,
+    autoHideMenuBar: true,
+    webPreferences: {
+      nodeIntegration: true
+    }
+  })
+
+  winRP.loadFile('ventanas/agregarTrabajador.html')
+
+  win.on('closed', () => {
+    win = null
+  })
+}
+
+function agregarMaterial() {
+  winRP = new BrowserWindow({
+    width: 900,
+    height: 700,
+    autoHideMenuBar: true,
+    webPreferences: {
+      nodeIntegration: true
+    }
+  })
+
+  winRP.loadFile('ventanas/agregarMaterial.html')
+
+  win.on('closed', () => {
+    win = null
+  })
+}
+
+// function agregarPermiso() {
+//   winRP = new BrowserWindow({
+//     width: 900,
+//     height: 700,
+//     autoHideMenuBar: true,
+//     webPreferences: {
+//       nodeIntegration: true
+//     }
+//   })
+
+//   winRP.loadFile('ventanas/registroActividades.html')
+
+//   win.on('closed', () => {
+//     win = null
+//   })
+// }
+
+function detallesObra() {
+  winRP = new BrowserWindow({
+    width: 900,
+    height: 700,
+    autoHideMenuBar: true,
+    webPreferences: {
+      nodeIntegration: true
+    }
+  })
+
+  winRP.loadFile('ventanas/registroActividades.html')
+
+  win.on('closed', () => {
+    win = null
+  })
+}
+
+////
+
 function openTest() {
   winRP = new BrowserWindow({
     width: 1200,
@@ -195,6 +303,11 @@ exports.runExec = runExec;
 exports.openRegistroPersona = openRegistroPersona;
 exports.openRegistroMaterial = openRegistroMaterial;
 exports.openRegistroObra = openRegistroObra;
+exports.openRegistroActividades = openRegistroActividades;
+
+exports.agregarActividad = agregarActividad;
+exports.agregarTrabajador = agregarTrabajador;
+exports.agregarMaterial = agregarMaterial;
 
 exports.openTest = openTest;
 

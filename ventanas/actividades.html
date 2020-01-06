@@ -70,13 +70,13 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="empleados.html">
+                            <a class="nav-link" href="empleados.html">
                                 <span data-feather="users"></span>
                                 <!-- Empleados -->
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="actividades.html">
+                            <a class="nav-link active" href="actividades.html">
                                 <span data-feather="tool"></span>
                                 <!-- Reportes -->
                             </a>
@@ -213,10 +213,11 @@
     <!-- <script src="../scripts/database/connection.js"></script> -->
     <!-- <script src="../scripts/obras.js"></script> -->
     <!-- <script src="../scripts/empleados.js"></script> -->
+    <script src="../scripts/actividades.js"></script>
 
     <script>
         var electron = require('electron')
-        var runExec = electron.remote.require('./main').openRegistroPersona
+        var runExec = electron.remote.require('./main').openRegistroActividades
     
         const button = document.getElementById('registro')
     

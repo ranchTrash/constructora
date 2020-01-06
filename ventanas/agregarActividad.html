@@ -23,75 +23,28 @@
     <div class="forma mt-3">
         <!-- <h2>Registro de personas</h2> -->
 
-        <h4 class="mb-4">Datos de la actividad</h4>
+        <h4 class="mb-4">Actividad</h4>
 
         <form class="needs-validation" novalidate action="">
             <div class="row ">
 
-                <div class="col-md-4 mb-3">
-                    <label for="nombre">Nombre</label>
-                    <input type="text" class="form-control" id="nombre" placeholder="" value="" required>
-            
-                    <div class="invalid-feedback">
-                        Ingrese un nombre válido.
-                    </div>
-                </div>
-
-                <div class="col-md-7 mb-3">
-                    <label for="descrip">Descripcion</label>
-                    <input type="text" class="form-control" id="descrip" placeholder="" value="" required>
-            
-                    <div class="invalid-feedback">
-                        Ingrese una entrada válida.
-                    </div>
-                </div>
-
-                <div class="col-md-1 mb-3">
-                    <label for="umed">U. medida</label>
-                    <input type="text" class="form-control" id="umed" placeholder="" value="" required>
-            
-                    <div class="invalid-feedback">
-                        Ingrese una entrada válida.
-                    </div>
-                </div>
-
-                <!-- <div class="col-md-2 mb-3">
-                    <label for="arquitecto">Arquitecto</label>
-                    <select class="custom-select d-block w-100" id="arquitecto" required>
+                <div class="col-md-6 mb-3">
+                    <label for="actividad">Actividad</label>
+                    <select class="custom-select d-block w-100" id="actividad" required>
                         <option value="">Elige...</option>
                     </select>
             
                     <div class="invalid-feedback">
                         Elija una opción válida.
                     </div>
-                </div> -->
-
-            </div>
-
-            <h4 class="mb-4 mt-4">Precio</h4>
-
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <label for="fecha">Fecha</label>
-                    <div class="input-group date">
-                        <input type="text" class="form-control" id="fecha">
-                        <div class="input-group-addon">
-                            <!-- <span class="glyphicon glyphicon-th"></span> -->
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
-                        </div>
-                    </div>
-
-                    <div class="invalid-feedback">
-                        Ingrese una fecha válida.
-                    </div>
                 </div>
 
                 <div class="col-md-6 mb-3">
-                    <label for="precio">Precio</label>
-                    <input type="number" class="form-control" id="precio" placeholder="" value="" required>
+                    <label for="cantidad">Cantidad a realizar</label>
+                    <input type="number" class="form-control" id="cantidad" placeholder="" value="" required>
             
                     <div class="invalid-feedback">
-                        Ingrese un precio válido.
+                        Ingrese una cantidad válida.
                     </div>
                 </div>
 
@@ -121,10 +74,7 @@
 
     <script src="../scripts/mainScript.js"></script>
     <!-- <script src="../scripts/database/connection.js"></script> -->
-    <!-- <script src="../scripts/registroPersonas.js"></script>
-    <script src="../scripts/registroPersonaVal.js"></script> -->
-    <!-- <script src="../scripts/registroObras.js"></script> -->
-    <script src="../scripts/registroActividades.js"></script>
+    <script src="../scripts/agregarActividad.js"></script>
 
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0-rc.6/js/bootstrap-datepicker.min.js"></script> -->
     <script src="../bootstrap/datepicker/js/bootstrap-datepicker.min.js"></script>

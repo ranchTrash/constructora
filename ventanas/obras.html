@@ -76,14 +76,14 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="bar-chart-2"></span>
+                            <a class="nav-link" href="actividades.html">
+                                <span data-feather="tool"></span>
                                 <!-- Reportes -->
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="layers"></span>
+                            <a class="nav-link" href="citas.html">
+                                <span data-feather="calendar"></span>
                                 <!-- Integrations -->
                             </a>
                         </li>
@@ -217,6 +217,20 @@
     <script>
         var electron = require('electron')
         var runExec = electron.remote.require('./main').openRegistroObra
+        var remote = require('electron').remote; 
+
+
+
+        // console.log(remote.getGlobal('obra').prop1);
+
+        // remote.getGlobal('obra').prop1 = 125;
+
+        // var ipcRenderer = require('electron').ipcRenderer;     
+        // ipcRenderer.send('show-prop1');  
+
+        // console.log(remote.getGlobal('obra').prop1);
+
+
   
         const button = document.getElementById('registro')
   
@@ -224,6 +238,7 @@
             runExec()
             console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
         })
+
     </script>
 
   </body>

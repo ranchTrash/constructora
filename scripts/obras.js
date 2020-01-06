@@ -358,7 +358,7 @@ function generarTablaActividades($query) {
             // html += "<span data-feather='file-text'></span>"
 
             html += "<div class='btn-group col-md-3' role='group' aria-label='Basic example'>"
-                html += "<button type='button' class='btn btn-info' id='agregarActividad'>+</button>"
+                html += "<button type='button' class='btn btn-info agregarActividad' id='agregarActividad'>+</button>"
                 html += "<button type='button' class='btn btn-info'>Ir a Actividades</button>"
             html += "</div>"
 
@@ -637,6 +637,23 @@ $(document).on("click", '.boton-lista', function () {
     var claveObra = $(this).find('.nombre-obra').find('p').first().text().split(" ")[1]
 
     seleccionaObra(parseInt(claveObra))
+
+
+    // console.log(remote.getGlobal('obra').prop1);
+
+    remote.getGlobal('obra').prop1 = claveObra;
+
+    // var ipcRenderer = require('electron').ipcRenderer;     
+    // ipcRenderer.send('show-prop1');  
+
+    // console.log(remote.getGlobal('obra').prop1);
+})
+
+// var electron = require('electron')
+
+$(document).on('click', ".agregarActividad", function () {   
+    var runExec = electron.remote.require('./main').agregarActividad
+    runExec()
 })
 
 $('.form-control').on('keyup', function () {
