@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- <meta charset="utf-8"> -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="script-src 'unsafe-inline';"> -->
+    <title>Login</title>
+    <link rel="stylesheet" href="../styles/index_style/main.css">
+  </head>
+  <body>
+
+    <div class="login-window">
+        <form action="" class="login-form">
+            <h1>Registro</h1>
+      
+            <div class="txtb">
+              <input type="text" id="user">
+              <span data-placeholder="Nombre de usuario"></span>
+            </div>
+      
+            <div class="txtb">
+                <input type="password" id="password">
+                <span data-placeholder="Contraseña"></span>
+            </div>
+
+            <div class="txtb">
+                <select class="" id="role">
+                    <option value="duenio">Duenio</option>
+                    <option value="secretario">Secretario</option>
+                    <option value="recepcionista">Recepcionista</option>
+                    <option value="arquitecto">Arquitecto</option>
+                    <option value="rechumanos">Rec. Humanos</option>
+                    <option value="recmateriales">Rec. Materiales</option>
+                    <option value="albanil">Albanil</option>
+                </select>
+            </div>
+      
+            <input type="" class="logbtn" value="Registrarse" id="logbtn">
+      
+            <div class="bottom-text">
+                <a href="../index.html" id="back">Atras</a>
+            </div>
+        </form>
+    </div>
+
+    
+
+    <!-- SCRIPTS -->
+
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script> -->
+    <!-- <script src="scripts/jQuery/jquery.min.js"></script> -->
+
+    <!-- <script>window.$ = window.jQuery = require('./scripts/jQuery/jquery.min.js')</script> -->
+
+    <!-- CARGAR SISTEMA -->
+    <script>
+        var electron = require('electron')
+        var mysql = require("mysql");
+
+        var user = document.getElementById('user')
+        var password = document.getElementById('password')
+        var role = document.getElementById('role')
+
+        var button = document.getElementById('logbtn')
+
+        var conn = mysql.createConnection({
+            host: "localhost",
+            user: "root",
+            password: "3_99SA.17*Pc#2"
+        });
+          
+        conn.connect((err) => {
+            if (err) {
+                console.log("Error_, ver la consola para mas detalles.");
+                return console.log(err.stack);
+            } else {
+                console.log("Conectado, conexion registro");
+            }
+
+            console.log("_Conexion_ establecida satisfactoriamente.");
+
+        });
+
+        button.addEventListener('click', () => {
+            $query = "create user '" + user.value + "'@'localhost' identified with mysql_native_password by '" + password.value + "'"
+
+            conn.query($query, function (err, rows, fields) {
+                if (err) {
+                    console.log("ERROR")
+                    return console.log(err.stack)
+                }
+
+                $query = "grant '" + role.value + "' to '" + user.value + "'@'localhost'"
+                
+                conn.query($query, function (err, rows, fields) {
+                    if (err) {
+                        console.log("ERROR")
+                        return console.log(err.stack)
+                    }
+
+                    $query = "set default role '" + role.value + "' to '" + user.value + "'@'localhost'"
+                
+                    conn.query($query, function (err, rows, fields) {
+                        if (err) {
+                            console.log("ERROR")
+                            return console.log(err.stack)
+                        }
+
+                        $query = "flush privileges"
+                
+                        conn.query($query, function (err, rows, fields) {
+                            if (err) {
+                                console.log("ERROR")
+                                return console.log(err.stack)
+                            }
+                            
+                            console.log("USUARIO REGISTRADO CON EXITO")
+                            alert("USUARIO REGISTRADO CON EXITO")
+                            
+                        })
+                        
+                    })
+                    
+                })
+
+            })
+        })
+    </script>
+
+  </body>
+</html>

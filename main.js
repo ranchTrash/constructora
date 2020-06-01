@@ -1,5 +1,6 @@
 const { app, BrowserWindow } = require('electron')
 const { remote } = require('electron')
+var mysql = require("mysql");
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -37,10 +38,14 @@ function createWindow() {
     // when you should delete the corresponding element.
     win = null
 
-    connection.end(function(){
-      // The connection has been closed
-      console.log("conexion cerrada con exito");
-    })
+    if (connection != null) {
+      connection.end(function(){
+        // The connection has been closed
+        console.log("conexion cerrada con exito");
+      })
+    }
+
+    
   })
 }
 
@@ -73,16 +78,40 @@ app.on('activate', () => {
 
 // button.addEventListener('click', () => console.log("Hola"))
 
-function runExec() {  
-  win.loadFile('ventanas/inicio.html')
+var conn = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "3_99SA.17*Pc#2",
+  database: "mysql"
+});
 
-  // win.setFullscreen(true)
-  win.maximize()
+conn.connect((err) => {
+  if (err) {
+    console.log("Error_, ver la consola para mas detalles.");
+    return console.log(err.stack);
+  } else {
+    console.log("Conectado, 1ra conexion");
+  }
+
+  console.log("Conexion_ establecida satisfactoriamente.");
+});
+
+exports.runExec = function runExec(user, password) {  
+  $query = "select exists (select User from user where User='" + user + "') as existe"
+
+  conn.query($query, function (err, rows, fields) {
+    if (err) {
+      console.log("ERROR")
+      return console.log(err.stack)
+    }
+
+    if (rows[0].existe == "1") {
+      crearConexion(user, password)
+    } else {
+      return console.log("El usuario no existe")
+    }
+  })
 }
-
-// function hola() {
-//   console.log("hola soy la funcion hola");
-// }
 
 var winRP
 
@@ -275,31 +304,64 @@ function openTest() {
   })
 }
 
+////////////////////////////////////////////////////////////////////////////////////////
+
+// var connection
+
+function crearConexion(us, pass) {
+  connection = mysql.createConnection({
+    host: "localhost",
+    user: us,
+    password: pass,
+    database: "constructora"
+  });
+
+  connection.connect((err) => {
+    if (err) {
+      console.log("Error, ver la consola para mas detalles.");
+      return console.log(err.stack);
+    } else {
+      console.log("Conectado");
+    }
+
+    conn.end(function(){
+      // The connection has been closed
+      console.log("conexion_ cerrada con exito");
+    })
+
+    win.loadFile('ventanas/inicio.html')
+    win.maximize()
+    
+    console.log("Conexion establecida satisfactoriamente.");
+
+    exports.connection = connection;
+  });
+
+}
+
+// var mysql = require("mysql");
+
+// connection = mysql.createConnection({
+//   host: "localhost",
+//   user: "root",
+//   password: "3_99SA.17*Pc#2",
+//   database: "constructora"
+// });
+
+// connection.connect((err) => {
+//   if (err) {
+//     console.log("Error, ver la consola para mas detalles.");
+//     return console.log(err.stack);
+//   } else {
+//     console.log("Conectado");
+//   }
+
+//   console.log("Conexion establecida satisfactoriamente.");
+// });
+
 ////////////////////////////////////////////
 
-var mysql = require("mysql");
-
-connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "s19a12a1999",
-  database: "constructora"
-});
-
-connection.connect((err) => {
-  if (err) {
-    console.log("Error, ver la consola para mas detalles.");
-    return console.log(err.stack);
-  } else {
-    console.log("Conectado");
-  }
-
-  console.log("Conexion establecida satisfactoriamente.");
-});
-
-////////////////////////////////////////////
-
-exports.runExec = runExec;
+// exports.runExec = runExec;
 exports.openRegistroPersona = openRegistroPersona;
 exports.openRegistroMaterial = openRegistroMaterial;
 exports.openRegistroObra = openRegistroObra;
@@ -311,5 +373,5 @@ exports.agregarMaterial = agregarMaterial;
 
 exports.openTest = openTest;
 
-exports.connection = connection;
+// exports.connection = connection;
 // exports.openRegistroPersona = openRegistroPersona;

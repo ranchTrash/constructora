@@ -23,23 +23,23 @@
     <script src="windows/window1/w1.js" charset="utf-8"></script> -->
 
     <div class="login-window">
-        <form action="#" class="login-form">
+        <form action="" class="login-form">
             <h1>Iniciar sesión</h1>
       
             <div class="txtb">
-              <input type="text">
+              <input type="text" id="user">
               <span data-placeholder="Nombre de usuario"></span>
             </div>
       
             <div class="txtb">
-                <input type="password">
+                <input type="password" id="password">
                 <span data-placeholder="Contraseña"></span>
             </div>
       
             <input type="submit" class="logbtn" value="Iniciar" id="logbtn">
       
             <div class="bottom-text">
-              ¿No tienes una cuenta? <a href="#">Regístrate</a>
+              ¿No tienes una cuenta? <a href="ventanas/registro.html">Regístrate</a>
             </div>
         </form>
     </div>
@@ -71,7 +71,7 @@
       });
 
       $(".logbtn").click(function () {
-        console.log("aaaaaaaaaaaaaaaaaaaa");
+        //console.log("aaaaaaaaaaaaaaaaaaaa");
         
         $(".login-form").remove();
         $(".login-window").append("<div class='lds-ring'><div></div><div></div><div></div><div></div></div>");
@@ -84,11 +84,16 @@
         var runExec = electron.remote.require('./main').runExec
   
         const button = document.getElementById('logbtn')
+
+        var user = document.getElementById('user')
+        var password = document.getElementById('password')
   
         button.addEventListener('click', function() {
-          runExec()
-          console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-          
+          console.log(user.value)
+          console.log(password.value)
+          //runExec(String(user.value), String(password.value))
+
+          runExec(String(user.value), String(password.value))           
         })
     </script>
 
