@@ -65,7 +65,8 @@ function setCiudades() {
 }
 
 function setCodPos(nombreCiudad) {
-    $query = "select codpos_cod from codigo cp join ciudad c on cp.cve_ciu=c.cve_ciu where nom_ciu='" + nombreCiudad + "'"
+    // $query = "select codpos_cod from codigo cp join ciudad c on cp.cve_ciu=c.cve_ciu where nom_ciu='" + nombreCiudad + "'"
+    $query = "select cp_cod from codigo cp join ciudad c on cp.cve_ciu=c.cve_ciu where nom_ciu='" + nombreCiudad + "'"
 
     connection.query($query, function (err, rows, fields) {
         if (err) {
@@ -81,7 +82,7 @@ function setCodPos(nombreCiudad) {
 
         rows.forEach(row => {
             html += '<option>'
-                html += row.codpos_cod
+                html += row.cp_cod
             html += '</option>'
         });
 
@@ -92,7 +93,7 @@ function setCodPos(nombreCiudad) {
 }
 
 function setColonias(codpos) {
-    $query = "select cve_col, nom_col from colonia c join codigo cp on c.cp_cod=cp.cp_cod where cp.codpos_cod=" + codpos
+    $query = "select cve_col, nom_col from colonia c join codigo cp on c.cp_cod=cp.cp_cod where cp.cp_cod=" + codpos
 
     connection.query($query, function (err, rows, fields) {
         if (err) {

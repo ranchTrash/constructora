@@ -10,6 +10,9 @@ connection.query($query, function (err, rows, fields) {
 
 */
 
+var electron = require('electron')
+var connection = electron.remote.require('./main').connection
+
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -140,7 +143,7 @@ function seleccionaEmpleado(curpEmp) {
 }
 
 function seleccionaPersona(curpEmp) {
-    $query = "select * from persona p join contratotra ct on p.cve_per=ct.cve_per where curp_per=" + curpEmp
+    $query = "select * from persona p join contratotra ct on p.cve_per=ct.cve_per where curp_per='" + curpEmp + "'"
 
     connection.query($query, function (err, rows, fields) {
         if (err) {

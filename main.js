@@ -25,8 +25,6 @@ function createWindow() {
 
   // and load the index.html of the app
   win.loadFile('index.html')
-  // win.loadFile('test2.html')
-  // win.loadURL('https://vuejs.org/v2/guide/transitions.html')
 
   // Open the DevTools
   // win.webContents.openDevTools()
@@ -310,7 +308,7 @@ function openTest() {
 
 function crearConexion(us, pass) {
   connection = mysql.createConnection({
-    host: "localhost",
+    // host: "%",
     user: us,
     password: pass,
     database: "constructora"

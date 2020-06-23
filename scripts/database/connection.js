@@ -1,22 +1,22 @@
-var mysql = require("mysql");
+// var mysql = require("mysql");
 
-var connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "s19a12a1999",
-  database: "constructora"
-});
+// var connection = mysql.createConnection({
+//   host: "localhost",
+//   user: "root",
+//   password: "s19a12a1999",
+//   database: "constructora"
+// });
 
-connection.connect((err) => {
-  if (err) {
-    console.log("Error, ver la consola para más detalles.");
-    return console.log(err.stack);
-  } else {
-    console.log("Conectado");
-  }
+// connection.connect((err) => {
+//   if (err) {
+//     console.log("Error, ver la consola para más detalles.");
+//     return console.log(err.stack);
+//   } else {
+//     console.log("Conectado");
+//   }
 
-  console.log("Conexión establecida satisfactoriamente.");
-});
+//   console.log("Conexión establecida satisfactoriamente.");
+// });
 
 
 /////////////////////////////////////////////////////////////////

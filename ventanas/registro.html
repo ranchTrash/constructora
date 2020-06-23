@@ -3,12 +3,78 @@
   <head>
     <!-- <meta charset="utf-8"> -->
     <!-- <meta http-equiv="Content-Security-Policy" content="script-src 'unsafe-inline';"> -->
-    <title>Login</title>
-    <link rel="stylesheet" href="../styles/index_style/main.css">
-  </head>
-  <body>
+    <title>Registro de usuario</title>
+    <!-- <link rel="stylesheet" href="../styles/index_style/main.css"> -->
 
-    <div class="login-window">
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="../styles/global_style.css">
+    <link rel="stylesheet" href="../styles/registroPersonas_style/registroPersonas.css">
+  </head>
+  <body class="bg-light">
+
+    <div class="forma mt-3">
+        <!-- <h2>Registro de personas</h2> -->
+
+        <h4 class="mb-4">Registro de usuario</h4>
+
+        <form class="needs-validation" novalidate action="" id="registroUsuario">
+            <div class="row ">
+
+                <div class="col-md-12 mb-3">
+                    <label for="usuario">Usuario</label>
+                    <input type="text" class="form-control" id="usuario" placeholder="" value="" required>
+                    
+            
+                    <div class="invalid-feedback">
+                        Ingrese un nombre de usuario válido.
+                    </div>
+                </div>
+
+                <div class="col-md-12 mb-3">
+                    <label for="contrasenia">Contraseña</label>
+                    <input type="password" class="form-control" id="contrasenia" placeholder="" value="" required>
+            
+                    <div class="invalid-feedback">
+                        Ingrese una contraseña válida.
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-12 mb-3">
+                    <label for="rol">Rol</label>
+                    <select class="custom-select d-block w-100" id="rol" required>
+                        <option value="">Elige...</option>
+                        <option value="duenio">Duenio</option>
+                        <option value="secretaria">Secretario</option>
+                        <option value="recepcionista">Recepcionista</option>
+                        <option value="arquitecto">Arquitecto</option>
+                        <option value="rhumanos">Rec. Humanos</option>
+                        <option value="rmateriales">Rec. Materiales</option>
+                        <option value="albanil">Albanil</option>
+                    </select>
+            
+                    <div class="invalid-feedback">
+                        Elija una opción válida.
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="mt-3 mb-2">
+                    <button type="submit" class="btn btn-primary btn-lg mr-5">Aceptar</button>
+                    <button type="button" class="btn btn-secondary btn-lg" id="btnTest">Cancelar</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+    <!-- <div class="login-window">
         <form action="" class="login-form">
             <h1>Registro</h1>
       
@@ -40,7 +106,7 @@
                 <a href="../index.html" id="back">Atras</a>
             </div>
         </form>
-    </div>
+    </div> -->
 
     
 
@@ -52,79 +118,8 @@
     <!-- <script>window.$ = window.jQuery = require('./scripts/jQuery/jquery.min.js')</script> -->
 
     <!-- CARGAR SISTEMA -->
-    <script>
-        var electron = require('electron')
-        var mysql = require("mysql");
-
-        var user = document.getElementById('user')
-        var password = document.getElementById('password')
-        var role = document.getElementById('role')
-
-        var button = document.getElementById('logbtn')
-
-        var conn = mysql.createConnection({
-            host: "localhost",
-            user: "root",
-            password: "3_99SA.17*Pc#2"
-        });
-          
-        conn.connect((err) => {
-            if (err) {
-                console.log("Error_, ver la consola para mas detalles.");
-                return console.log(err.stack);
-            } else {
-                console.log("Conectado, conexion registro");
-            }
-
-            console.log("_Conexion_ establecida satisfactoriamente.");
-
-        });
-
-        button.addEventListener('click', () => {
-            $query = "create user '" + user.value + "'@'localhost' identified with mysql_native_password by '" + password.value + "'"
-
-            conn.query($query, function (err, rows, fields) {
-                if (err) {
-                    console.log("ERROR")
-                    return console.log(err.stack)
-                }
-
-                $query = "grant '" + role.value + "' to '" + user.value + "'@'localhost'"
-                
-                conn.query($query, function (err, rows, fields) {
-                    if (err) {
-                        console.log("ERROR")
-                        return console.log(err.stack)
-                    }
-
-                    $query = "set default role '" + role.value + "' to '" + user.value + "'@'localhost'"
-                
-                    conn.query($query, function (err, rows, fields) {
-                        if (err) {
-                            console.log("ERROR")
-                            return console.log(err.stack)
-                        }
-
-                        $query = "flush privileges"
-                
-                        conn.query($query, function (err, rows, fields) {
-                            if (err) {
-                                console.log("ERROR")
-                                return console.log(err.stack)
-                            }
-                            
-                            console.log("USUARIO REGISTRADO CON EXITO")
-                            alert("USUARIO REGISTRADO CON EXITO")
-                            
-                        })
-                        
-                    })
-                    
-                })
-
-            })
-        })
-    </script>
+    
+    <script src="../scripts/registro.js"></script>
 
   </body>
 </html>

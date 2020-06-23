@@ -1,3 +1,6 @@
+var electron = require('electron')
+var connection = electron.remote.require('./main').connection
+
 var filtroSeleccionado = ''
 
 $(document).ready(function () {
@@ -571,10 +574,10 @@ function generarTablaPermisos($query) {
 
         rows.forEach(row => {
             html += "<tr class='text-justify'>"
-                html += "<th scope='row' id='linkPermiso'>" + row.tipo_perm + "</th>"
+                html += "<th scope='row' id='linkPermiso'>" + row.tipo_per + "</th>"
                 html += "<td>" + formatearFecha(String(row.fi_percon)) + "</td>"
                 html += "<td>" + formatearFecha(String(row.ff_percon)) + "</td>"
-                html += "<td>" + row.descrip_perm + "</td>"
+                html += "<td>" + row.descrip_per + "</td>"
 
             html += "</tr>"
         });
@@ -610,7 +613,7 @@ function setMateriales(claveObra) {
 }
 
 function setPermisos(claveObra) {
-    $query = "select tipo_perm, fi_percon, ff_percon, descrip_perm from permiso p join permisocon pc on p.cve_perm=pc.cve_perm where cve_con=" + claveObra
+    $query = "select tipo_per, fi_percon, ff_percon, descrip_per from permiso p join permisocon pc on p.cve_perm=pc.cve_perm where cve_con=" + claveObra
 
     generarTablaPermisos($query)
 }
